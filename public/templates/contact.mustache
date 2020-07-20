@@ -1,0 +1,16 @@
+<body>
+    {{>header_all}}
+    <h1 id="h1-contact" hidden>Nous Contacter</h1>
+    <form id="form-contact" method="post">
+        <label id="label-nom" class="label-form-contact grid-row-1-2" for="input-nom" hidden>Nom</label>
+        <input id="input-nom" class="input-form-contact grid-row-2-3" type="text" name="nom" hidden>
+        <label id="label-prenom" class="label-form-contact grid-row-3-4" for="input-prenom" hidden>Prénom</label>
+        <input id="input-prenom" class="input-form-contact grid-row-4-5" type="text" name="prenom" hidden>
+        <label id="label-mail" class="label-form-contact grid-row-5-6" for="input-mail" hidden>Adresse Mail</label>
+        <input id="input-mail" class="input-form-contact grid-row-6-7" type="text" name="mail" placeholder="exemple@hotmail.fr" hidden>
+        <label id="label-message" class="label-form-contact grid-row-7-8" for="text-message" hidden>Message</label>
+        <textarea id="text-message" class="input-form-contact grid-row-8-9" name="message" placeholder="Votre message..." hidden></textarea>
+        <input id="input-form-submit" class=" grid-row-9-10" type="submit" value="Envoyer" hidden>
+    </form>
+    {{>footer}}
+</body>
