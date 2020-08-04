@@ -104,24 +104,69 @@ page('/', async function () {
     $('#input-contact').click( () => { page.redirect('/contact'); });
     $('#input-more-info').click( () => { page.redirect('/services'); });
 
+    let email = $('#input-email-newsletter');
+
+    email.keypress((e) => {
+        if (email.val().length > 99) e.preventDefault();
+    });
+
     $('#input-send-newsletter').click( () => {
-        let email = $('#input-email-newsletter');
-        const mailRegex = new RegExp(/^([\w-.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i);
-        console.log(email.val());
-        if( email.val().match(mailRegex) ){
-            // TODO : Appel API
-            email.val('');
-            $('#validation-newsletter').fadeIn(500);
-            setTimeout(function(){
-                $('#validation-newsletter').fadeOut(500);
-            }, 3000);
+
+        if( email.val().match(/^([\w-.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i) ){
+            $.ajax('/api/newsletter', {
+                data: { mail: email.val() },
+                method: 'POST'
+            }).done(() => {
+                email.val('');
+
+                $('#error-mail-newsletter').fadeOut(500);
+                $('#error-interne-newsletter').fadeOut(500);
+
+                $('#validation-newsletter').fadeIn(500).delay(3000).fadeOut(500);
+                email.css('border', '2px solid #5269FF');
+            }).fail((res) => {
+                email.css('border', '2px solid red');
+                if(res.status === 422){
+                    $('#error-interne-newsletter').fadeOut(500);
+                    $('#validation-newsletter').fadeOut(500);
+
+                    $('#error-mail-newsletter').fadeIn(500);
+                } else {
+                    $('#error-mail-newsletter').fadeOut(500);
+                    $('#validation-newsletter').fadeOut(500);
+
+                    $('#error-interne-newsletter').fadeIn(500);
+                }
+            });
         } else {
-            $('#error-newsletter').fadeIn('slow').delay(3000).fadeOut('slow');
+            email.css('border', '2px solid red');
+            $('#error-mail-newsletter').fadeIn(500);
         }
     });
 
     $('#input-join-us').click( () => { page.redirect('/nous-rejoindre'); });
     $('#adriz-footer').click( () => { page.redirect('/'); });
+});
+
+page('agence', async function () {
+    sessionSet('page_to_render', 'agence');
+    await renderTemplate(templates('/public/templates/agence.mustache'), sessionGet('session'));
+
+    header();
+    agence();
+
+    $('#input-rejoindre').click(() => { page.redirect('/nous-rejoindre'); });
+});
+
+page('equipe', async function () {
+    sessionSet('page_to_render', 'equipe');
+    await renderTemplate(templates('/public/templates/equipe.mustache'), sessionGet('session'));
+
+    header();
+    equipe();
+
+    // $('#linkedin-lucas').click(() => { page.redirect('https://www.linkedin.com/in/hervouet-lucas/'); });
+    $('#button-contact').click(() => { page.redirect('/contact'); });
 });
 
 page('contact', async function () {
@@ -130,6 +175,122 @@ page('contact', async function () {
 
     header();
     contact();
+
+    let nom = $('#input-nom');
+    nom.keypress((e) => {
+        if (nom.val().length > 99) e.preventDefault();
+    });
+
+    let prenom = $('#input-prenom');
+    prenom.keypress((e) => {
+        if (prenom.val().length > 99) e.preventDefault();
+    });
+
+    let mail = $('#input-mail');
+    mail.keypress((e) => {
+        if (mail.val().length > 99) e.preventDefault()
+    });
+
+    let message = $('#text-message');
+    message.keypress((e) => {
+        if (message.val().length > 99) e.preventDefault();
+    });
+
+    $('#form-contact').submit((event) => {
+
+        event.preventDefault();
+
+        let mailValid = true;
+
+        if( !mail.val().match(/^([\w-.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i) ){
+            $('#error-mail').fadeIn(500);
+            mail.css('border', '2px solid red');
+            mailValid = false;
+        }
+
+        const data = {
+            nom: nom.val(),
+            prenom: prenom.val(),
+            mail: (mailValid ? mail.val() : ''),
+            message: message.val()
+        }
+
+        $.ajax('/api/contact', {
+            data: data,
+            type: 'POST',
+        }).done(() => {
+            nom.val('');
+            prenom.val('');
+            mail.val('');
+            message.val('');
+
+            $('#validation-formulaire-contact').fadeIn(500).delay(3000).fadeOut(500);
+
+            $('#error-formulaire-contact').fadeOut(500);
+
+            $('#error-nom').fadeOut(500);
+            nom.css('border', '2px solid #5269FF');
+
+            $('#error-prenom').fadeOut(500);
+            prenom.css('border', '2px solid #5269FF');
+
+            $('#error-mail').fadeOut(500);
+            mail.css('border', '2px solid #5269FF');
+
+            $('#error-message').fadeOut(500);
+            message.css('border', '2px solid #5269FF');
+        }).fail((res) => {
+            if(res.status === 422) {
+                $('#error-formulaire-contact').fadeOut(500);
+
+                if( res.responseJSON.some( elem => elem.param === 'nom') ){
+                    $('#error-nom').fadeIn(500);
+                    nom.css('border', '2px solid red');
+                } else {
+                    $('#error-nom').fadeOut(500);
+                    nom.css('border', '2px solid #5269FF');
+                }
+
+                if( res.responseJSON.some( elem => elem.param === 'prenom') ){
+                    $('#error-prenom').fadeIn(500);
+                    prenom.css('border', '2px solid red');
+                } else {
+                    $('#error-prenom').fadeOut(500);
+                    prenom.css('border', '2px solid #5269FF');
+                }
+
+                if( res.responseJSON.some( elem => elem.param === 'mail') ){
+                    $('#error-mail').fadeIn(500);
+                    mail.css('border', '2px solid red');
+                } else {
+                    $('#error-mail').fadeOut(500);
+                    mail.css('border', '2px solid #5269FF');
+                }
+
+                if( res.responseJSON.some( elem => elem.param === 'message') ){
+                    $('#error-message').fadeIn(500);
+                    message.css('border', '2px solid red');
+                } else {
+                    $('#error-message').fadeOut(500);
+                    message.css('border', '2px solid #5269FF');
+                }
+            } else {
+                $('#error-formulaire-contact').fadeIn(500);
+
+                $('#error-nom').fadeOut(500);
+                nom.css('border', '2px solid #5269FF');
+
+                $('#error-prenom').fadeOut(500);
+                prenom.css('border', '2px solid #5269FF');
+
+                $('#error-mail').fadeOut(500);
+                mail.css('border', '2px solid #5269FF');
+
+                $('#error-message').fadeOut(500);
+                message.css('border', '2px solid #5269FF');
+            }
+        });
+    });
 });
 
 /********** ANIMATIONS **********/
@@ -180,11 +341,11 @@ function accueil(){
 
         let elem;
 
-        if ($(window).scrollTop() > 100) {
+        if ($(window).scrollTop() > 10) {
             $('#adriz-header').addClass('reduce-adriz');
             $('#menu').addClass('reduce-menu');
             $('header').addClass('color');
-        } else if ($(window).scrollTop() < 99) {
+        } else if ($(window).scrollTop() < 9) {
             $('#adriz-header').removeClass('reduce-adriz');
             $('#menu').removeClass('reduce-menu');
             $('header').removeClass('color');
@@ -354,6 +515,314 @@ function accueil(){
     });
 }
 
+/* -------- Agence -------- */
+
+function agence() {
+
+    $('#h1-titre-agence').fadeIn(1000);
+    setTimeout(() => {
+        $('#span-its').fadeIn(1000);
+        setTimeout(() => {
+            $('#span-titre-our').fadeIn(1000);
+            $('#hr-titre-agence').show(1000);
+            setTimeout(() => {
+                $('#h1-titre-agence-1').fadeIn(1000);
+                setTimeout(() => {
+                    $('#span-titre-1-1').fadeIn(1000);
+                }, 250);
+                setTimeout(() => {
+                    $('#h1-titre-agence-2').fadeIn(1000);
+                    setTimeout(() => {
+                        $('#span-titre-2-1').fadeIn(1000);
+                    }, 250);
+                    setTimeout(() => {
+                        $('#h1-titre-agence-3').fadeIn(1000);
+                        setTimeout(() => {
+                            $('#span-titre-3-1').fadeIn(1000);
+                        }, 250);
+                        setTimeout(() => {
+                            $('#h1-titre-agence-4').fadeIn(1000);
+                            setTimeout(() => {
+                                $('#span-titre-4-1').fadeIn(1000);
+                            }, 250);
+                            setTimeout(() => {
+                                switchHeader();
+                            }, 5000);
+                        }, 500);
+                    }, 500);
+                }, 500);
+            }, 500);
+        }, 250);
+    }, 250);
+
+    $(window).scroll(() => {
+
+        if ($(window).scrollTop() > 10) {
+            $('#adriz-header').addClass('reduce-adriz');
+            $('#menu').addClass('reduce-menu');
+            $('#gradient-header-contact').addClass('color-header');
+        } else if ($(window).scrollTop() < 9) {
+            $('#adriz-header').removeClass('reduce-adriz');
+            $('#menu').removeClass('reduce-menu');
+            $('#gradient-header-contact').removeClass('color-header');
+        }
+
+        if ($(window).scrollTop() > 150) {
+            $('#p-digitale').fadeIn(2000);
+            $('#gif-digitale').show(2000);
+        }
+
+        if ($(window).scrollTop() > 350) {
+            $('#div-internet').show(1000);
+            $('#gif-internet').fadeIn(1000);
+            $('#div-texte-internet').fadeIn(1000);
+            $('#p-internet').fadeIn(1000);
+        }
+
+        if ($(window).scrollTop() > 700) {
+            $('#div-texte-reseaux').fadeIn(1000);
+            $('#p-reseaux').fadeIn(1000);
+            $('#div-gif-reseaux').show(1000);
+            $('#gif-reseaux').fadeIn(1000);
+        } else if( $(window).scrollTop() === 0) {
+            $('#div-texte-reseaux').fadeOut(1000);
+            $('#p-reseaux').fadeOut(1000);
+            $('#div-gif-reseaux').fadeOut(1000);
+            $('#gif-reseaux').fadeOut(1000);
+        }
+
+        if ($(window).scrollTop() > 1150) {
+            $('#div-gif-travail').show(1000);
+            $('#gif-travail').fadeIn(1000);
+            $('#div-texte-travail').fadeIn(1000);
+            $('#p-travail').fadeIn(1000);
+        } else if( $(window).scrollTop() < 500) {
+            $('#div-gif-travail').fadeOut(1000);
+            $('#gif-travail').fadeOut(1000);
+            $('#div-texte-travail').fadeOut(1000);
+            $('#p-travail').fadeOut(1000);
+        }
+
+        if ($(window).scrollTop() > 1500) {
+            $('#p-revolution').fadeIn(1000);
+            $('#gif-revolution').show(1000);
+        } else if( $(window).scrollTop() < 900) {
+            $('#p-revolution').fadeOut();
+            $('#gif-revolution').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1700) {
+            $('#div-gif-valeur').show(1000);
+            $('#gif-valeur').fadeIn(1000);
+            $('#div-texte-valeur').fadeIn(1000);
+            $('#p-valeur').fadeIn(1000);
+        } else if( $(window).scrollTop() < 1100) {
+            $('#div-gif-valeur').fadeOut();
+            $('#gif-valeur').fadeOut();
+            $('#div-texte-valeur').fadeOut();
+            $('#p-valeur').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 2150) {
+            $('#gif-adriz').fadeIn(1000);
+            $('#div-texte-adriz').fadeIn(2000);
+            $('#p-adriz').fadeIn(2000);
+        } else if( $(window).scrollTop() < 1700) {
+            $('#gif-adriz').fadeOut();
+            $('#div-texte-adriz').fadeOut();
+            $('#p-adriz').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 2500) {
+            $('#p-rejoindre').fadeIn(1000);
+            $('#hr-service-adriz').show(1000);
+            $('#input-rejoindre').show(1000);
+        } else if( $(window).scrollTop() < 2000) {
+            $('#p-rejoindre').fadeOut();
+            $('#hr-service-adriz').fadeOut();
+            $('#input-rejoindre').fadeOut();
+        }
+
+    });
+
+}
+
+async function switchHeader() {
+
+    let titre = [];
+
+    titre.push( $('#span-titre-our') );
+    titre.push( $('#span-titre-1-1') );
+    titre.push( $('#span-titre-2-1') );
+    titre.push( $('#span-titre-3-1') );
+    titre.push( $('#span-titre-4-1') );
+
+    titre.push( $('#span-titre-your') );
+    titre.push( $('#span-titre-1-2') );
+    titre.push( $('#span-titre-2-2') );
+    titre.push( $('#span-titre-3-2') );
+    titre.push( $('#span-titre-4-2') );
+
+    setTimeout(() => {
+
+    });
+
+    titre[0].fadeOut(1000);
+    titre[1].fadeOut(1000);
+    titre[2].fadeOut(1000);
+    titre[3].fadeOut(1000);
+    titre[4].fadeOut(1000);
+
+    setTimeout(() => {
+        titre[5].fadeIn(1000);
+        titre[6].fadeIn(1000);
+        titre[7].fadeIn(1000);
+        titre[8].fadeIn(1000);
+        titre[9].fadeIn(1000);
+        setTimeout(() => {
+            titre[5].fadeOut(1000);
+            titre[6].fadeOut(1000);
+            titre[7].fadeOut(1000);
+            titre[8].fadeOut(1000);
+            titre[9].fadeOut(1000);
+            setTimeout(() => {
+                titre[0].fadeIn(1000);
+                titre[1].fadeIn(1000);
+                titre[2].fadeIn(1000);
+                titre[3].fadeIn(1000);
+                titre[4].fadeIn(1000);
+                setTimeout(() => {
+                    switchHeader();
+                }, 5000);
+            },1000);
+        }, 5000);
+    }, 1000);
+}
+
+/* -------- Équipe -------- */
+
+function equipe() {
+
+
+    $("#header-creation").show(1000);
+    setTimeout(() => {
+        $("#h1-creation").fadeIn(1000);
+        setTimeout(() => {
+            $("#h2-creation").fadeIn(1000);
+            setTimeout(() => {
+                $("#div-rennes").show(1000);
+                setTimeout(() => {
+                    $("#p-rennes").fadeIn(1000);
+                    $("#div-img-rennes").fadeIn(1000);
+                }, 500);
+            }, 500);
+        }, 500);
+    }, 750);
+
+    $(window).scroll(() => {
+
+        console.log($(window).scrollTop());
+
+        if ($(window).scrollTop() > 10) {
+            $('#adriz-header').addClass('reduce-adriz');
+            $('#menu').addClass('reduce-menu');
+            $('#gradient-header-contact').addClass('color-header');
+        } else if ($(window).scrollTop() < 9) {
+            $('#adriz-header').removeClass('reduce-adriz');
+            $('#menu').removeClass('reduce-menu');
+            $('#gradient-header-contact').removeClass('color-header');
+        }
+
+        if ($(window).scrollTop() > 200) {
+            $('#div-etudes').show(1000, () => {
+                $('#p-etudes').fadeIn(1000);
+            });
+        }
+
+        if ($(window).scrollTop() > 450) {
+            $('#div-confiance').show(1000, () => {
+                $('#img-confiance').show(1000);
+                $('#p-confiance').fadeIn(1000);
+            });
+        } else if ($(window).scrollTop() < 10) {
+            $('#div-confiance').fadeOut();
+            $('#img-confiance').fadeOut();
+            $('#p-confiance').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 550) {
+            $('#div-competence').show(1000, () => {
+                $('#p-competence').fadeIn(1000);
+            });
+        } else if ($(window).scrollTop() < 10) {
+            $('#div-competence').fadeOut();
+            $('#p-competence').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 750) {
+            $('#header-presentation').show(1000, () => {
+                $('#h1-presentation').fadeIn(1000, () => {
+                    $('#h2-presentation').fadeIn(1000);
+                });
+            });
+        } else if ($(window).scrollTop() < 250) {
+            $('#header-presentation').fadeOut();
+            $('#h1-presentation').fadeOut();
+            $('#h2-presentation').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1000) {
+            $('#div-lucas').show(1000, () => {
+                $('#h3-lucas').fadeIn(1000);
+                $('#h4-lucas').fadeIn(1000);
+                $('#h5-lucas').fadeIn(1000);
+                $('#linkedin-lucas').show(1000);
+                $('#div-img-lucas').show(1000);
+            });
+        } else if ($(window).scrollTop() < 400) {
+            $('#div-lucas').fadeOut();
+            $('#h3-lucas').fadeOut();
+            $('#h4-lucas').fadeOut();
+            $('#h5-lucas').fadeOut();
+            $('#linkedin-lucas').fadeOut();
+            $('#div-img-lucas').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1150) {
+            $('#div-julien').show(1000, () => {
+                $('#h3-julien').fadeIn(1000);
+                $('#h4-julien').fadeIn(1000);
+                $('#h5-julien').fadeIn(1000);
+                $('#linkedin-julien').show(1000);
+                $('#div-img-julien').show(1000);
+            });
+        } else if ($(window).scrollTop() < 550) {
+            $('#div-julien').fadeOut();
+            $('#h3-julien').fadeOut();
+            $('#h4-julien').fadeOut();
+            $('#h5-julien').fadeOut();
+            $('#linkedin-julien').fadeOut();
+            $('#div-img-julien').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1350) {
+            $('#div-video-presentation').show(1000);
+        } else if ($(window).scrollTop() < 750) {
+            $('#div-video-presentation').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1600) {
+            $('#p-contact').fadeIn(1000);
+            $('#button-contact').show(1000);
+        } else if ($(window).scrollTop() < 1000) {
+            $('#p-contact').fadeOut();
+            $('#button-contact').fadeOut();
+        }
+
+    });
+
+}
+
 /* -------- Contact -------- */
 
 function contact() {
@@ -381,8 +850,6 @@ function contact() {
 
     $(window).scroll(() => {
 
-        console.log($(window).scrollTop());
-
         if ($(window).scrollTop() > 10) {
             $('#adriz-header').addClass('reduce-adriz');
             $('#menu').addClass('reduce-menu');
@@ -409,11 +876,7 @@ fetch('/api/session')
         }, SESSION_REFRESH_TIME);
 
         page(window.location.pathname);
-    }).catch((err) => console.log('Could not query the session ! -> ' + err));
-
-
-// Toutes les dix secondes, si l'user ne refraichit pas la page, la session est récupérée.
-// Dans le cas ou la session n'est plus valide
+    }).catch((e) => console.log('Could not query the session ! -> ' + e));
 
 const refreshSession = function () {
     if (sessionGet('session').success) {
