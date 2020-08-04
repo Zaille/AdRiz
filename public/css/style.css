@@ -163,7 +163,7 @@ h3 {
 
 #div-nav-menu {
     display: grid;
-    grid-template-rows: 10% 40% auto;
+    grid-template-rows: 10% 60% auto;
     background: #2E1572;
     opacity: 90%;
     z-index: 4;
@@ -173,10 +173,6 @@ h3 {
     background: transparent;
     z-index: 4;
     overflow-x: hidden;
-}
-
-.hr-menu {
-    background: #5271FF;
 }
 
 #button-close-menu {
@@ -189,9 +185,13 @@ h3 {
     cursor: pointer;
 }
 
+.nav-sous-menu {
+    grid-template-rows: repeat(3, 15%) auto repeat(2, 15%) !important;
+}
+
 #nav-menu {
     display: grid;
-    grid-template-rows: repeat(5, 4px auto) 4px;
+    grid-template-rows: repeat(3, 15%) 0 repeat(2, 15%);
     width: 100%;
     text-align: start;
 }
@@ -216,52 +216,46 @@ h3 {
     margin-left: 5%;
 }
 
+.span-sous-menu {
+    font-size: 115%;
+    font-weight: bold;
+    color: #FFFFFF;
+    align-self: center;
+    margin-left: 5%;
+}
+
+.img-sous-menu {
+    width: 40%;
+    justify-self: center;
+    align-self: center;
+}
+
+.show-sous-menu {
+    height: 100% !important;
+}
+
+#div-sous-menu {
+    display: grid;
+    grid-template-rows: repeat(2, 50%);
+    background: #5271FF;
+    opacity: 90%;
+    height: 0;
+
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.div-sous-menu {
+    display: grid;
+    grid-template-columns: 20% auto;
+    cursor: pointer;
+}
+
 #img-services {
     width: 12%;
-}
-
-#hr-row-1-2 {
-    grid-row: 1 / 2;
-}
-
-#div-row-2-3 {
-    grid-row: 2 / 3;
-}
-
-#hr-row-3-4 {
-    grid-row: 3 / 4;
-}
-
-#div-row-4-5 {
-    grid-row: 4 / 5;
-}
-
-#hr-row-5-6 {
-    grid-row: 5 / 6;
-}
-
-#div-row-6-7 {
-    grid-row: 6 / 7;
-}
-
-#hr-row-7-8 {
-    grid-row: 7 / 8;
-}
-
-#div-row-8-9 {
-    grid-row: 8 / 9;
-}
-
-#hr-row-9-10 {
-    grid-row: 9 / 10;
-}
-
-#div-row-10-11 {
-    grid-row: 10 / 11;
-}
-
-#hr-row-11-12 {
-    grid-row: 11 / 12;
 }
 
 /* -------------- ACCUEIL -------------- */
