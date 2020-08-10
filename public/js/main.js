@@ -403,7 +403,8 @@ function accueil(){
 
         if( $(window).scrollTop() > 950 ) {
             $('#h2-service-2').fadeIn(1000);
-            $('#img-service-2').show(1000);
+            $('#div-img-service-2').fadeIn(1000);
+            $('#img-service-2').fadeIn(1000);
             elem = $('#div-description-service-2');
             elem.fadeIn(1000);
             elem.css('display', 'grid');
@@ -412,6 +413,7 @@ function accueil(){
         } else if( $(window).scrollTop() < 600 ) {
             $('#div-description-service-2').fadeOut();
             $('#h2-service-2').fadeOut();
+            $('#div-img-service-2').fadeOut();
             $('#img-service-2').fadeOut();
             $('.icon-service-2').fadeOut();
             $('.p-service-2').fadeOut();
