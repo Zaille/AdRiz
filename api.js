@@ -31,11 +31,19 @@ module.exports = (passport) => {
             return res.status(422).json(errors.array());
         }
 
-        dbHelper.newsletter.new(
+        dbHelper.newsletter.get(
             req.body.mail
-        ).then(() => {
-            res.end();
-        }).catch((err) => res.status(400).json({err}));
+        ).then((rows) => {
+            if( rows.result[0] != null ) res.status(423).json(body('mail', 'Mail déjà inscrit à la newsletter'));
+            else {
+                dbHelper.newsletter.new(
+                    req.body.mail
+                ).then(() => {
+                    res.end();
+                }).catch((err) => res.status(400).json({err}));
+            }
+        });
+
     });
 
     app.post('/contact', [

@@ -122,6 +122,7 @@ page('/', async function () {
 
                 $('#error-mail-newsletter').fadeOut(500);
                 $('#error-interne-newsletter').fadeOut(500);
+                $('#error-inscrit-newsletter').fadeOut(500);
 
                 $('#validation-newsletter').fadeIn(500).delay(3000).fadeOut(500);
                 email.css('border', '2px solid #5269FF');
@@ -130,17 +131,30 @@ page('/', async function () {
                 if(res.status === 422){
                     $('#error-interne-newsletter').fadeOut(500);
                     $('#validation-newsletter').fadeOut(500);
+                    $('#error-inscrit-newsletter').fadeOut(500);
 
                     $('#error-mail-newsletter').fadeIn(500);
+                } else if( res.status === 423 ) {
+                    $('#error-interne-newsletter').fadeOut(500);
+                    $('#validation-newsletter').fadeOut(500);
+                    $('#error-mail-newsletter').fadeOut(500);
+
+                    $('#error-inscrit-newsletter').fadeIn(500);
                 } else {
                     $('#error-mail-newsletter').fadeOut(500);
                     $('#validation-newsletter').fadeOut(500);
+                    $('#error-inscrit-newsletter').fadeOut(500);
 
                     $('#error-interne-newsletter').fadeIn(500);
                 }
             });
         } else {
             email.css('border', '2px solid red');
+
+            $('#validation-newsletter').fadeOut(500);
+            $('#error-interne-newsletter').fadeOut(500);
+            $('#error-inscrit-newsletter').fadeOut(500);
+
             $('#error-mail-newsletter').fadeIn(500);
         }
     });
@@ -346,6 +360,7 @@ page('nous-rejoindre', async function () {
 
                 $('#error-mail-newsletter-a-venir').fadeOut(500);
                 $('#error-interne-newsletter-a-venir').fadeOut(500);
+                $('#error-inscrit-newsletter-a-venir').fadeOut(500);
 
                 $('#validation-newsletter-a-venir').fadeIn(500).delay(3000).fadeOut(500);
                 email.css('border', '2px solid #5269FF');
@@ -354,17 +369,30 @@ page('nous-rejoindre', async function () {
                 if(res.status === 422){
                     $('#error-interne-newsletter-a-venir').fadeOut(500);
                     $('#validation-newsletter-a-venir').fadeOut(500);
+                    $('#error-inscrit-newsletter-a-venir').fadeOut(500);
 
                     $('#error-mail-newsletter-a-venir').fadeIn(500);
+                } else if( res.status === 423 ){
+                    $('#error-interne-newsletter-a-venir').fadeOut(500);
+                    $('#validation-newsletter-a-venir').fadeOut(500);
+                    $('#error-mail-newsletter-a-venir').fadeOut(500);
+
+                    $('#error-inscrit-newsletter-a-venir').fadeIn(500);
                 } else {
                     $('#error-mail-newsletter-a-venir').fadeOut(500);
                     $('#validation-newsletter-a-venir').fadeOut(500);
+                    $('#error-inscrit-newsletter-a-venir').fadeOut(500);
 
                     $('#error-interne-newsletter-a-venir').fadeIn(500);
                 }
             });
         } else {
             email.css('border', '2px solid red');
+
+            $('#validation-newsletter-a-venir').fadeOut(500);
+            $('#error-inscrit-newsletter-a-venir').fadeOut(500);
+            $('#error-interne-newsletter-a-venir').fadeOut(500);
+
             $('#error-mail-newsletter-a-venir').fadeIn(500);
         }
     });

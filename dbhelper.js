@@ -45,6 +45,14 @@ module.exports.newsletter = {
             newsletter (mail)
         VALUES 
             (?);`, [mail]
+    )),
+    get: (mail) => query(prepareQuery(`
+        SELECT
+            mail
+        FROM
+            newsletter
+        WHERE
+            mail = ?`, [mail]
     ))
 };
 
