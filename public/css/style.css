@@ -2051,6 +2051,119 @@ h3 {
     text-align: center;
 }
 
+/********** NOUS REJOINDRE **********/
+
+#div-a-venir {
+    display: grid;
+    grid-template-rows: repeat(2 ,auto) 30% 25%;
+    margin-top: 20%;
+    padding: 7%;
+    height: 800px;
+}
+
+#h1-a-venir {
+    color: #2E1572;
+    text-align: center;
+    align-self: center;
+    margin: 20% 0 20% 0;
+    font-size: 250%;
+    letter-spacing: 0.03em;
+}
+
+#p-a-venir {
+    color: #2E1572;
+    font-weight: bold;
+    font-size: 100%;
+    text-align: justify;
+    align-self: center;
+    letter-spacing: 0.03em;
+    line-height: 30px;
+}
+
+#div-newsletter-a-venir {
+    display: grid;
+    grid-template-rows: repeat(2, 40%) 20px;
+    grid-template-columns: 70% 30%;
+    margin: 20% 0 10% 0;
+}
+
+#label-newsletter-a-venir {
+    grid-column: 1 / 3;
+    font-size: 95%;
+    line-height: 130%;
+    align-self: center;
+    text-align: justify;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: #2E1572;
+    margin: 5% 0 5% 0;
+}
+
+#input-email-newsletter-a-venir {
+    background: #FFFFFF;
+    border: 2px solid #5269FF;
+    box-sizing: border-box;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 3%;
+    margin: 5% 5% 5% 0;
+}
+
+#input-send-newsletter-a-venir {
+    font-weight: bold;
+    background: #5269FF;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    color: #FFFFFF;
+    padding: 3%;
+    margin: 10% 0 10% 5%;
+    border: none;
+    font-size: 100%;
+    cursor: pointer;
+}
+
+#validation-newsletter-a-venir {
+    font-size: 80%;
+    color: #5269FF;
+    grid-column: 1 / 3;
+    margin: 5%;
+    justify-self: center;
+    align-self: center;
+}
+
+#div-contact-a-venir {
+    display: grid;
+    grid-template-rows: repeat(2, 50%);
+}
+
+#label-contact-a-venir {
+    font-size: 95%;
+    line-height: 130%;
+    align-self: center;
+    text-align: justify;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: #2E1572;
+    margin: 5% 0 5% 0;
+}
+
+#input-contact-a-venir {
+    background: transparent;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: #2E1572 solid 3px;
+    color: #2E1572;
+    font-size: 120%;
+    font-weight: bold;
+    align-self: center;
+    text-align: center;
+    justify-self: center;
+    padding: 5% 10% 5% 10%;
+    margin: 5% 0 20% 0;
+    width: 30%;
+    cursor: pointer;
+}
+
 /********** FOOTER **********/
 
 #div-footer {

@@ -318,6 +318,58 @@ page('contact', async function () {
     });
 });
 
+/* -------- Contact -------- */
+
+page('nous-rejoindre', async function () {
+    sessionSet('page_to_render', 'rejoindre');
+    await renderTemplate(templates('/public/templates/rejoindre.mustache'), sessionGet('session'));
+    window.scrollTo(0, 0);
+
+    header();
+    rejoindre();
+
+    let email = $('#input-email-newsletter-a-venir');
+
+    email.keypress((e) => {
+        if (email.val().length > 99) e.preventDefault();
+    });
+
+    $('#input-contact-a-venir').click( () => { page.redirect('/contact'); })
+    $('#input-send-newsletter-a-venir').click( () => {
+
+        if( email.val().match(/^([\w-.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i) ){
+            $.ajax('/api/newsletter', {
+                data: { mail: email.val() },
+                method: 'POST'
+            }).done(() => {
+                email.val('');
+
+                $('#error-mail-newsletter-a-venir').fadeOut(500);
+                $('#error-interne-newsletter-a-venir').fadeOut(500);
+
+                $('#validation-newsletter-a-venir').fadeIn(500).delay(3000).fadeOut(500);
+                email.css('border', '2px solid #5269FF');
+            }).fail((res) => {
+                email.css('border', '2px solid red');
+                if(res.status === 422){
+                    $('#error-interne-newsletter-a-venir').fadeOut(500);
+                    $('#validation-newsletter-a-venir').fadeOut(500);
+
+                    $('#error-mail-newsletter-a-venir').fadeIn(500);
+                } else {
+                    $('#error-mail-newsletter-a-venir').fadeOut(500);
+                    $('#validation-newsletter-a-venir').fadeOut(500);
+
+                    $('#error-interne-newsletter-a-venir').fadeIn(500);
+                }
+            });
+        } else {
+            email.css('border', '2px solid red');
+            $('#error-mail-newsletter-a-venir').fadeIn(500);
+        }
+    });
+});
+
 /********** ANIMATIONS **********/
 
 /* -------- Header -------- */
@@ -1130,6 +1182,38 @@ function contact() {
             $('#gradient-header-contact').removeClass('color-header');
         }
     });
+}
+
+/* -------- Nous Rejoindre -------- */
+
+function rejoindre() {
+
+    $('#h1-a-venir').fadeIn(1000);
+    setTimeout(() => {
+        $('#p-a-venir').fadeIn(1000);
+        setTimeout(() => {
+            $('#label-newsletter-a-venir').fadeIn(1000);
+            $('#input-email-newsletter-a-venir').show(1000);
+            $('#input-send-newsletter-a-venir').show(1000);
+            setTimeout(() => {
+                $('#label-contact-a-venir').fadeIn(1000);
+                $('#input-contact-a-venir').show(1000);
+            }, 500);
+        }, 500);
+    }, 500);
+
+    $(window).scroll(() => {
+        if ($(window).scrollTop() > 10) {
+            $('#adriz-header').addClass('reduce-adriz');
+            $('#menu').addClass('reduce-menu');
+            $('#gradient-header-contact').addClass('color-header');
+        } else if ($(window).scrollTop() < 9) {
+            $('#adriz-header').removeClass('reduce-adriz');
+            $('#menu').removeClass('reduce-menu');
+            $('#gradient-header-contact').removeClass('color-header');
+        }
+    });
+
 }
 
 fetch('/api/session')
