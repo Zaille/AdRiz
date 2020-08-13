@@ -346,7 +346,7 @@ h3 {
     margin: 10% 7% 10% 7%;
 }
 
-#digitale-img {
+#digital-img {
     position: absolute;
     left: -45%;
     top: 54%;
@@ -811,6 +811,391 @@ h3 {
     cursor: pointer;
 }
 
+/* -------------- NOS SERVICES -------------- */
+
+/********** HEADER **********/
+
+#header-service {
+    margin-top: 15%;
+    position: relative;
+    height: 400px;
+    overflow-x: hidden;
+}
+
+#img-header-service {
+    position: absolute;
+    width: 150%;
+    left: -25%;
+}
+
+#h1-services {
+    position: relative;
+    text-align: center;
+    background: #2E1572;
+    border-radius: 10px;
+    opacity: 80%;
+    color: #FFFFFF;
+    margin: 35% 15% 0 15%;
+    padding: 7%;
+}
+
+
+.h2-services {
+    color: #2E1572;
+    background: #FFFFFF;
+    text-align: center;
+    grid-row: 1 / 3;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 5%;
+    margin: 0 6% 0 6%;
+    align-self: center;
+    z-index: 3;
+}
+
+/********** STRATÉGIE **********/
+
+#div-strategie {
+    height: 900px;
+    display: grid;
+    grid-template-rows: 10% 50px 20% 60%;
+}
+
+#div-texte-strategie {
+    grid-row: 2 / 4;
+    background: #5271FF;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    align-content: center;
+    padding: 15% 7% 15% 7%;
+}
+
+#p-strategie {
+    font-weight: 500;
+    line-height: 22px;
+    text-align: justify;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+}
+
+#div-container-strategie {
+    display: grid;
+    grid-template-rows: repeat(4, 25%);
+    position: relative;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+#img-strategie {
+    position: absolute;
+    height: 100%;
+    left: -50%
+}
+
+.div-strategie {
+    display: grid;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 3% 5% 3% 5%;
+    border-radius: 10px;
+}
+
+#div-objectifs {
+    margin-top: 8%;
+}
+
+#div-amelioration {
+    margin-bottom: 8%;
+}
+
+.div-strategie-gauche {
+    grid-template-columns: 30% 70%;
+}
+
+.div-strategie-droit {
+    grid-template-columns: 70% 30%;
+}
+
+.cercle-strategie {
+    width: 65%;
+    justify-self: center;
+    align-self: center;
+}
+
+.cercle-strategie-gauche {
+    margin: 5% 20% 5% 15%;
+}
+
+.cercle-strategie-droit {
+    margin: 5% 15% 5% 20%;
+}
+
+.icon-strategie {
+    width: 35%;
+    justify-self: center;
+    align-self: center;
+    margin: 5% 20% 5% 15%;
+}
+
+.icon-strategie-gauche {
+    margin: 5% 20% 5% 15%;
+}
+
+.icon-strategie-droit {
+    margin: 5% 15% 5% 20%;
+}
+
+#img-faiblesses {
+    margin-top: 10%;
+}
+
+.p-strategie {
+    text-align: justify;
+    align-self: center;
+    font-weight: 500;
+    font-size: 90%;
+    line-height: 20px;
+    letter-spacing: 0.03em;
+}
+
+.p-strategie-gauche {
+    color: #2E1572;
+    margin-right: 5%;
+}
+
+.p-strategie-droit {
+    color: #5271FF;
+    margin-left: 5%;
+}
+
+/********** ANALYSE **********/
+
+#div-analyse {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    margin: 15% 5% 15% 5%;
+}
+
+#p-analyse {
+    color: #2E1572;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    line-height: 20px;
+    letter-spacing: 0.03em;
+    font-size: 120%;
+    margin: 5%;
+}
+
+#input-analyse {
+    background: transparent;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: #2E1572 solid 3px;
+    color: #2E1572;
+    font-size: 120%;
+    font-weight: bold;
+    align-self: center;
+    justify-self: center;
+    padding: 5% 10% 5% 10%;
+    margin: 5% 0 10% 0;
+    width: auto;
+    cursor: pointer;
+}
+
+/********** CAMPAGNE **********/
+
+#div-campagne {
+    height: 900px;
+    display: grid;
+    grid-template-rows: 10% 50px 20% 60%;
+    margin-top: 20%;
+}
+
+#div-texte-campagne {
+    grid-row: 2 / 4;
+    background: #2E1572;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    align-content: center;
+    padding: 15% 7% 15% 7%;
+}
+
+#p-campagne {
+    font-weight: 500;
+    line-height: 22px;
+    text-align: justify;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+}
+
+#div-container-campagne {
+    display: grid;
+    grid-template-rows: repeat(4, 25%);
+    position: relative;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+#img-campagne {
+    position: absolute;
+    height: 100%;
+    left: -50%
+}
+
+.div-campagne {
+    display: grid;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 3% 5% 3% 5%;
+    border-radius: 10px;
+}
+
+#div-segmentation {
+    margin-top: 8%;
+}
+
+#div-performance {
+    margin-bottom: 8%;
+}
+
+.div-campagne-gauche {
+    grid-template-columns: 30% 70%;
+}
+
+.div-campagne-droit {
+    grid-template-columns: 70% 30%;
+}
+
+.cercle-campagne {
+    width: 65%;
+    justify-self: center;
+    align-self: center;
+}
+
+.cercle-campagne-gauche {
+    margin: 5% 20% 5% 15%;
+}
+
+.cercle-campagne-droit {
+    margin: 5% 15% 5% 20%;
+}
+
+.icon-campagne {
+    width: 35%;
+    justify-self: center;
+    align-self: center;
+    margin: 5% 20% 5% 15%;
+}
+
+.icon-campagne-gauche {
+    margin: 5% 20% 5% 15%;
+}
+
+.icon-campagne-droit {
+    margin: 5% 15% 5% 20%;
+}
+
+#img-faiblesses {
+    margin-top: 10%;
+}
+
+.p-campagne {
+    text-align: justify;
+    align-self: center;
+    font-weight: 500;
+    font-size: 90%;
+    line-height: 20px;
+    letter-spacing: 0.03em;
+}
+
+.p-campagne-gauche {
+    color: #5271FF;
+    margin-right: 5%;
+}
+
+.p-campagne-droit {
+    color: #2E1572;
+    margin-left: 5%;
+}
+
+/********** INBOUND **********/
+
+#div-inbound {
+    background: #DDDFFF;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin: 5%;
+    height: 250px;
+}
+
+#gif-inbound {
+    width: 90%;
+    margin: 3% 5% 3% 5%;
+}
+
+/********** AUTOMATISATION **********/
+
+#div-automatisation {
+    height: 450px;
+    display: grid;
+    grid-template-rows: 15% 50px 70%;
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+
+#div-texte-automatisation {
+    grid-row: 2 / 4;
+    background: #5271FF;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    align-content: center;
+    padding: 15% 7% 15% 7%;
+}
+
+#p-automatisation {
+    font-weight: 500;
+    line-height: 22px;
+    text-align: justify;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+}
+
+/********** CONTACT **********/
+
+#div-question {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    margin: 30% 7% 30% 7%;
+}
+
+#p-question {
+    align-self: center;
+    justify-self: center;
+    font-size: 120%;
+    font-weight: bold;
+    align-items: center;
+    text-align: justify;
+    letter-spacing: 0.03em;
+    color: #2E1572;
+}
+
+#input-question {
+    font-weight: bold;
+    font-size: 100%;
+    background: linear-gradient(90.25deg, #546BFF 0.05%, #A6ACFF 99.95%);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 7%;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+
 /* -------------- AGENCE -------------- */
 
 /********** HEADER **********/
@@ -921,7 +1306,7 @@ h3 {
     grid-template-columns: 45% 20% 35%;
 }
 
-#div-digitale {
+#div-digital {
     height: 150px;
     overflow: hidden;
     grid-row: 1 / 3;
@@ -929,12 +1314,12 @@ h3 {
     position: relative;
 }
 
-#gif-digitale {
+#gif-digital {
     position: absolute;
     top: -40%;
 }
 
-#p-digitale {
+#p-digital {
     font-weight: 500;
     font-size: 90%;
     line-height: 150%;

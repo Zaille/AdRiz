@@ -95,6 +95,7 @@ const sessionSet = (key, value) => sessionStorage.setItem(key, JSON.stringify(va
 page('/', async function () {
     sessionSet('page_to_render', '');
     await renderTemplate(templates('/public/templates/accueil.mustache'), sessionGet('session'));
+    window.scrollTo(0, 0);
 
     accueil();
     header();
@@ -148,9 +149,28 @@ page('/', async function () {
     $('#adriz-footer').click( () => { page.redirect('/'); });
 });
 
+/* -------- Services -------- */
+
+page('services', async function () {
+    sessionSet('page_to_render', 'services');
+    await renderTemplate(templates('/public/templates/services.mustache'), sessionGet('session'));
+    window.scrollTo(0, 0);
+
+    header();
+    service();
+
+    $('#input-analyse').click( () => { page.redirect('/nous-rejoindre'); });
+    $('#input-question').click( () => { page.redirect('/contact'); });
+
+
+});
+
+/* -------- Agence -------- */
+
 page('agence', async function () {
     sessionSet('page_to_render', 'agence');
     await renderTemplate(templates('/public/templates/agence.mustache'), sessionGet('session'));
+    window.scrollTo(0, 0);
 
     header();
     agence();
@@ -158,20 +178,25 @@ page('agence', async function () {
     $('#input-rejoindre').click(() => { page.redirect('/nous-rejoindre'); });
 });
 
+/* -------- Équipe -------- */
+
 page('equipe', async function () {
     sessionSet('page_to_render', 'equipe');
     await renderTemplate(templates('/public/templates/equipe.mustache'), sessionGet('session'));
+    window.scrollTo(0, 0);
 
     header();
     equipe();
 
-    // $('#linkedin-lucas').click(() => { page.redirect('https://www.linkedin.com/in/hervouet-lucas/'); });
     $('#button-contact').click(() => { page.redirect('/contact'); });
 });
+
+/* -------- Contact -------- */
 
 page('contact', async function () {
     sessionSet('page_to_render', 'contact');
     await renderTemplate(templates('/public/templates/contact.mustache'), sessionGet('session'));
+    window.scrollTo(0, 0);
 
     header();
     contact();
@@ -355,7 +380,7 @@ function accueil(){
     setTimeout(() => {
         $('#adriz-presentation').fadeIn(1000);
         setTimeout(() => {
-            $('#digitale-img').show(1000);
+            $('#digital-img').show(1000);
             setTimeout(() => {
                 $('#button-rejoindre-header').fadeIn(1000);
                 $('#button-contacter-header').fadeIn(1000);
@@ -543,6 +568,223 @@ function accueil(){
     });
 }
 
+/* -------- Services -------- */
+
+function service() {
+
+    $('#img-header-service').fadeIn(1000);
+    setTimeout(() => {
+        $('#h1-services').fadeIn(1000);
+    }, 500);
+
+    $(window).scroll(() => {
+
+        if ($(window).scrollTop() > 10) {
+            $('#adriz-header').addClass('reduce-adriz');
+            $('#menu').addClass('reduce-menu');
+            $('#gradient-header-contact').addClass('color-header');
+        } else if ($(window).scrollTop() < 9) {
+            $('#adriz-header').removeClass('reduce-adriz');
+            $('#menu').removeClass('reduce-menu');
+            $('#gradient-header-contact').removeClass('color-header');
+        }
+
+        if ($(window).scrollTop() > 200) {
+            $('#h2-strategie').fadeIn(1000);
+        }
+
+        if ($(window).scrollTop() > 300) {
+            $('#div-texte-strategie').show(1000);
+            setTimeout(() => {
+                $('#p-strategie').fadeIn(1000);
+            }, 1000);
+        }
+
+        if ($(window).scrollTop() > 400) {
+            $('#img-strategie').show(1000);
+        } else if ($(window).scrollTop() === 0) {
+            $('#img-strategie').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 450) {
+            $('#div-objectifs').show(1000);
+            $('#p-objectifs').fadeIn(1000)
+        } else if ($(window).scrollTop() === 0) {
+            $('#div-objectifs').fadeOut();
+            $('#p-objectifs').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 500) {
+            $('#div-faiblesses').show(1000);
+            $('#p-faiblesses').fadeIn(1000)
+        } else if ($(window).scrollTop() === 0) {
+            $('#div-faiblesses').fadeOut();
+            $('#p-faiblesses').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 550) {
+            $('#div-pack').show(1000);
+            $('#p-pack').fadeIn(1000)
+        } else if ($(window).scrollTop() === 0) {
+            $('#div-pack').fadeOut();
+            $('#p-pack').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 600) {
+            $('#div-amelioration').show(1000);
+            $('#p-amelioration').fadeIn(1000)
+        } else if ($(window).scrollTop() === 0) {
+            $('#div-amelioration').fadeOut();
+            $('#p-amelioration').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1000) {
+            $('#p-analyse').fadeIn(1000);
+            $('#input-analyse').show(1000);
+        } else if ($(window).scrollTop() < 200) {
+            $('#p-analyse').fadeOut();
+            $('#input-analyse').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1200) {
+            $('#h2-campagne').fadeIn(1000);
+        } else if ($(window).scrollTop() < 750) {
+            $('#h2-campagne').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1300) {
+            $('#div-texte-campagne').show(1000);
+            $('#p-campagne').fadeIn(2000);
+        } else if ($(window).scrollTop() < 850) {
+            $('#div-texte-campagne').fadeOut();
+            $('#p-campagne').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1400) {
+            $('#img-campagne').show(1000);
+        } else if ($(window).scrollTop() < 950) {
+            $('#img-campagne').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1650) {
+            $('#div-segmentation').show(1000);
+            $('#p-segmentation').fadeIn(1000);
+        } else if ($(window).scrollTop() < 1150) {
+            $('#div-segmentation').fadeOut();
+            $('#p-segmentation').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1700) {
+            $('#div-pub').show(1000);
+            $('#p-pub').fadeIn(1000);
+        } else if ($(window).scrollTop() < 1200) {
+            $('#div-pub').fadeOut();
+            $('#p-pub').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1750) {
+            $('#div-funnel').show(1000);
+            $('#p-funnel').fadeIn(1000);
+        } else if ($(window).scrollTop() < 1250) {
+            $('#div-funnel').fadeOut();
+            $('#p-funnel').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 1800) {
+            $('#div-performance').show(1000);
+            $('#p-performance').fadeIn(1000)
+        } else if ($(window).scrollTop() < 1300) {
+            $('#div-performance').fadeOut();
+            $('#p-performance').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 2200) {
+            $('#div-inbound').show(1000);
+            setTimeout(() => {
+                switchInbound();
+            }, 500);
+        } else if ($(window).scrollTop() < 1700) {
+            $('#div-inbound').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 2600) {
+            $('#h2-automatisation').show(1000);
+        } else if ($(window).scrollTop() < 2100) {
+            $('#h2-automatisation').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 2700) {
+            $('#div-texte-automatisation').show(1000);
+            $('#p-automatisation').fadeIn(2000);
+        } else if ($(window).scrollTop() < 2200) {
+            $('#div-texte-automatisation').fadeOut();
+            $('#p-automatisation').fadeOut();
+        }
+
+        if ($(window).scrollTop() > 3000) {
+            $('#p-question').fadeIn(1000);
+            $('#input-question').show(1000);
+        } else if ($(window).scrollTop() < 2500) {
+            $('#p-question').fadeOut();
+            $('#input-question').fadeOut();
+        }
+
+    });
+}
+
+async function switchInbound() {
+
+
+    if ( $('#div-inbound').css('display') === 'none' ) return
+    else $('#img-inbound-1').fadeIn();
+    setTimeout(() => {
+        if ( $('#div-inbound').css('display') === 'none' ) return
+        else $('#img-inbound-2').fadeIn();
+        setTimeout(() => {
+            if ( $('#div-inbound').css('display') === 'none' ) return
+            else $('#img-inbound-3').fadeIn();
+            setTimeout(() => {
+                if ( $('#div-inbound').css('display') === 'none' ) return
+                else $('#img-inbound-4').fadeIn();
+                setTimeout(() => {
+                    if ( $('#div-inbound').css('display') === 'none' ) return
+                    else $('#img-inbound-5').fadeIn();
+                    setTimeout(() => {
+                        if ( $('#div-inbound').css('display') === 'none' ) return
+                        else $('#img-inbound-6').fadeIn();
+                        setTimeout(() => {
+                            if ( $('#div-inbound').css('display') === 'none' ) return
+                            else $('#img-inbound-7').fadeIn();
+                            setTimeout(() => {
+                                if ( $('#div-inbound').css('display') === 'none' ) return
+                                else $('#img-inbound-8').fadeIn();
+                                setTimeout(() => {
+                                    if ( $('#div-inbound').css('display') === 'none' ) return
+                                    else $('#img-inbound-9').fadeIn();
+                                    setTimeout(() => {
+                                        $('#img-inbound-1').fadeOut(1000);
+                                        $('#img-inbound-2').fadeOut(1000);
+                                        $('#img-inbound-3').fadeOut(1000);
+                                        $('#img-inbound-4').fadeOut(1000);
+                                        $('#img-inbound-5').fadeOut(1000);
+                                        $('#img-inbound-6').fadeOut(1000);
+                                        $('#img-inbound-7').fadeOut(1000);
+                                        $('#img-inbound-8').fadeOut(1000);
+                                        $('#img-inbound-9').fadeOut(1000);
+                                        setTimeout(() => {
+                                            switchInbound();
+                                        }, 2000);
+                                    }, 3000);
+                                }, 1000);
+                            }, 1000);
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }, 1000);
+    }, 1000);
+}
+
 /* -------- Agence -------- */
 
 function agence() {
@@ -596,8 +838,8 @@ function agence() {
         }
 
         if ($(window).scrollTop() > 150) {
-            $('#p-digitale').fadeIn(2000);
-            $('#gif-digitale').show(2000);
+            $('#gif-digital').show(2000);
+            $('#p-digital').fadeIn(2000);
         }
 
         if ($(window).scrollTop() > 350) {
