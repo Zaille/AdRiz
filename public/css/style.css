@@ -398,7 +398,7 @@ h3 {
 /* -------------- ACCUEIL -------------- */
 
 #div-container-accueil {
-    height: autox;
+    height: auto;
 }
 
 /********** HEADER **********/
@@ -3588,19 +3588,6 @@ h3 {
     padding-top: 25%;
 }
 
-#gradient-footer {
-    background: linear-gradient(360deg, #5271FF 45.3%, #E4F4FE 100%);
-    filter: blur(20px);
-    -webkit-filter: blur(20px);
-    position: absolute;
-    width: 120%;
-    height: 100%;
-    z-index: -3;
-    left: -10%;
-    bottom: -10%;
-    margin-top: 15%;
-}
-
 #div-suivre {
     display: grid;
     grid-template-rows: repeat(3, auto);
@@ -3666,6 +3653,19 @@ h3 {
 
 @media all and ( min-width: 1301px) {
 
+    #gradient-footer {
+        background: linear-gradient(360deg, #5271FF 45.3%, #E4F4FE 100%);
+        filter: blur(20px);
+        -webkit-filter: blur(20px);
+        position: absolute;
+        width: 120%;
+        height: 90%;
+        z-index: -3;
+        left: -10%;
+        bottom: -10%;
+        margin-top: 15%;
+    }
+
     #h3-footer {
         font-weight: bold;
         font-size: 150%;
@@ -3680,9 +3680,9 @@ h3 {
         background: #2E1572;
         border: none;
         height: 4px;
-        width: 13%;
+        width: 5%;
         border-radius: 10px;
-        margin-top: 5%;
+        margin-top: 2%;
         align-self: center;
         justify-self: center;
     }
@@ -3690,7 +3690,7 @@ h3 {
     #nav-reseaux-sociaux {
         display: grid;
         grid-template-columns: repeat(4, 25%);
-        margin: 7% 30% 0 30%;
+        margin: 4% 35% 0 35%;
     }
 
     .a-reseaux {
@@ -3714,16 +3714,16 @@ h3 {
         justify-self: center;
         letter-spacing: 0.03em;
         color: #2E1572;
-        margin: 10% 7% 0 7%;
+        margin: 6% 7% 0 7%;
     }
 
     #hr-nav-site {
         background: #2E1572;
         border: none;
         height: 4px;
-        width: 11%;
+        width: 5%;
         border-radius: 10px;
-        margin-top: 5%;
+        margin-top: 2%;
         align-self: center;
         justify-self: center;
     }
@@ -3732,13 +3732,13 @@ h3 {
         display: grid;
         grid-template-columns: repeat(2, 50%);
         grid-template-rows: 30% 15% 15% 30%;
-        margin: 7% 5% 5% 5%;
+        margin: 4% 20% 2% 25%;
     }
 
     .a-site {
         font-weight: bold;
         text-decoration: none;
-        font-size: 100%;
+        font-size: 120%;
         align-self: center;
         letter-spacing: 0.03em;
         color: #FFFFFF;
@@ -3748,7 +3748,7 @@ h3 {
     .a-sous-site {
         font-weight: bold;
         text-decoration: none;
-        font-size: 85%;
+        font-size: 100%;
         align-self: center;
         letter-spacing: 0.03em;
         color: #67D1FF;
@@ -3764,16 +3764,29 @@ h3 {
     }
 
     #adriz-footer {
-        width: 30%;
+        width: 15%;
         align-self: center;
         justify-self: end;
-        margin: 5% 0 5% 0;
+        margin: 2% 0 2% 0;
         cursor: pointer;
     }
 
 }
 
 @media all and ( min-width: 801px) and ( max-width: 1300px ) {
+
+    #gradient-footer {
+        background: linear-gradient(360deg, #5271FF 45.3%, #E4F4FE 100%);
+        filter: blur(20px);
+        -webkit-filter: blur(20px);
+        position: absolute;
+        width: 120%;
+        height: 100%;
+        z-index: -3;
+        left: -10%;
+        bottom: -10%;
+        margin-top: 15%;
+    }
 
     #h3-footer {
         font-weight: bold;
@@ -3799,7 +3812,7 @@ h3 {
     #nav-reseaux-sociaux {
         display: grid;
         grid-template-columns: repeat(4, 25%);
-        mmargin: 5% 35% 0 35%;
+        margin: 5% 30% 0 30%;
     }
 
     .a-reseaux {
@@ -3814,7 +3827,6 @@ h3 {
         justify-content: center;
         cursor: pointer;
         text-decoration: none;
-    }
     }
 
     #h3-nav-site {
@@ -3874,7 +3886,7 @@ h3 {
     }
 
     #adriz-footer {
-        width: 30%;
+        width: 25%;
         align-self: center;
         justify-self: end;
         margin: 5% 0 5% 0;
@@ -3884,6 +3896,19 @@ h3 {
 }
 
 @media all and ( min-width: 501px) and ( max-width: 800px ) {
+
+    #gradient-footer {
+        background: linear-gradient(360deg, #5271FF 45.3%, #E4F4FE 100%);
+        filter: blur(20px);
+        -webkit-filter: blur(20px);
+        position: absolute;
+        width: 120%;
+        height: 100%;
+        z-index: -3;
+        left: -10%;
+        bottom: -10%;
+        margin-top: 15%;
+    }
 
     #h3-footer {
         font-weight: bold;
@@ -3993,6 +4018,19 @@ h3 {
 }
 
 @media all and ( max-width: 500px) {
+
+    #gradient-footer {
+        background: linear-gradient(360deg, #5271FF 45.3%, #E4F4FE 100%);
+        filter: blur(20px);
+        -webkit-filter: blur(20px);
+        position: absolute;
+        width: 120%;
+        height: 100%;
+        z-index: -3;
+        left: -10%;
+        bottom: -10%;
+        margin-top: 15%;
+    }
 
     #h3-footer {
         font-weight: bold;
