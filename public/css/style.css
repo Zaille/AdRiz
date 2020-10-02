@@ -24,16 +24,13 @@ body {
         top: 0;
         width: 100%;
 
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
 
 }
 
 /* Téléphone et Tablette */
+
 @media all and ( max-width: 1300px ) {
 
     header {
@@ -44,10 +41,6 @@ body {
         top: 0;
         width: 100%;
 
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
 
@@ -223,10 +216,6 @@ h3 {
     opacity: 90%;
     height: 0;
 
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 }
 
@@ -412,18 +401,32 @@ h3 {
 
 .color {
     background: #5271FF !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 #button-rejoindre-header {
     background: #2E1572;
     color: #FFFFFF;
     cursor: pointer;
+
+    transition: background-color 0.3s, border 0.3s;
+}
+
+#button-rejoindre-header:hover {
+    background: #230b4f;
+    border: 4px solid #230b4f;
 }
 
 #button-contacter-header {
     background: transparent;
     color: #2E1572;
     cursor: pointer;
+
+    transition: background-color 0.3s;
+}
+
+#button-contacter-header:hover {
+    background: #c5cfff;
 }
 
 @media all and ( min-width: 1301px ) {
@@ -466,11 +469,53 @@ h3 {
         height: 100%;
         cursor: pointer;
         justify-content: center;
+
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-header:hover {
+        background: #2E1572;
+    }
+
+    .margin {
+        margin-top: 4.2% !important;
+    }
+
+    #nav-sous-adriz {
+        position: absolute;
+        display: grid;
+        grid-template-rows: repeat(2, 50%);
+        width: 11.1%;
+        background: #2E1572;
+        margin-top: 92px;
+
+        transition: all 0.5s ease-in-out;
+    }
+
+    .div-sous-adriz {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .div-sous-adriz:hover {
+        background: #546BFF;
+        color: #2E1572;
+    }
+
+    .span-sous-adriz {
+        font-size: 120%;
+        font-weight: bold;
+        color: #fff;
+        margin-left: 15%;
     }
 
     .span-header {
         color: white;
-        font-size: 120%;
+        font-size: 130%;
         font-weight: bold;
         align-self: center;
     }
@@ -481,10 +526,6 @@ h3 {
         cursor: pointer;
         grid-column: 1 / 2;
 
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
 
@@ -508,9 +549,17 @@ h3 {
     #digital-img {
         position: absolute;
         right: 3%;
-        top: 150px;
         width: 40%;
         z-index: -2;
+        animation-name: move;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes move {
+        0%   {top:150px;}
+        50%  {top:170px;}
+        100% {top:150px;}
     }
 
     #div-button {
@@ -582,10 +631,6 @@ h3 {
         left: -10%;
     }
 
-    .color {
-        background: #5271FF !important;
-    }
-
     .reduce-adriz {
         width: 110px !important;
     }
@@ -600,10 +645,6 @@ h3 {
         margin: 5% 0 5% 10%;
         cursor: pointer;
 
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
 
@@ -619,10 +660,6 @@ h3 {
         cursor: pointer;
         grid-column: 2 / 3;
 
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
 
@@ -719,10 +756,6 @@ h3 {
         left: -10%;
     }
 
-    .color {
-        background: #5271FF !important;
-    }
-
     .reduce-adriz {
         width: 90px !important;
     }
@@ -737,10 +770,6 @@ h3 {
         margin: 5% 0 5% 10%;
         cursor: pointer;
 
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
 
@@ -756,10 +785,6 @@ h3 {
         cursor: pointer;
         grid-column: 2 / 3;
 
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
 
@@ -857,10 +882,6 @@ h3 {
         left: -10%;
     }
 
-    .color {
-        background: #5271FF !important;
-    }
-
     .reduce-adriz {
         width: 80px !important;
     }
@@ -875,10 +896,6 @@ h3 {
         margin: 5% 0 5% 10%;
         cursor: pointer;
 
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
 
@@ -894,10 +911,6 @@ h3 {
         cursor: pointer;
         grid-column: 2 / 3;
 
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
 
@@ -1302,6 +1315,7 @@ h3 {
         display: grid;
         grid-template-columns: repeat(2, 50%);
         margin: 15% 25% 0 25%;
+        height: 200px;
     }
 
     #h2-question {
@@ -1329,6 +1343,13 @@ h3 {
         color: #FFFFFF;
         border: none;
         cursor: pointer;
+
+        transition: all 0.3s ease-in-out;
+    }
+
+    #input-contact:hover {
+        padding: 6.5%;
+        font-size: 190%;
     }
 
 }
@@ -1576,7 +1597,7 @@ h3 {
     }
 
     .p-reseaux-sociaux {
-        font-size: 100%;
+        font-size: 115%;
         margin: 7% 5% 5% 5%;
         text-align: justify;
         letter-spacing: 0.03em;
@@ -1586,7 +1607,7 @@ h3 {
     .h3-reseaux-sociaux {
         margin: 0 5% 7% 5%;
         align-self: end;
-        font-size: 125%;
+        font-size: 135%;
     }
 
     #div-facebook-ads {
@@ -1631,6 +1652,12 @@ h3 {
         color: #2E1572;
         padding: 1.5% 3% 1.5% 3%;
         cursor: pointer;
+
+        transition: all 0.3s;
+    }
+
+    #input-more-info:hover {
+        background: #c5cfff;
     }
 
     #div-more-info {
@@ -1899,6 +1926,12 @@ h3 {
     border-radius: 10px;
     padding: 3%;
     margin: 5% 5% 5% 0;
+
+    transition: all 0.5s ease-in-out;
+}
+
+#input-email-newsletter:hover {
+    border: 2px solid #2E1572;
 }
 
 @media all and ( min-width: 1301px ) {
@@ -1932,6 +1965,12 @@ h3 {
         border: none;
         font-size: 150%;
         cursor: pointer;
+
+        transition: background 0.3s;
+    }
+
+    #input-send-newsletter:hover {
+        background: #2E1572;
     }
 
     #validation-newsletter {
@@ -2123,6 +2162,7 @@ h3 {
         justify-content: center;
         margin: 15% 30% 0 30%;
         position: relative;
+        height: 100px;
     }
 
     #input-join-us {
@@ -2137,6 +2177,14 @@ h3 {
         padding: 4%;
         border: none;
         cursor: pointer;
+
+        transition: all 0.3s ease-in-out;
+    }
+
+    #input-join-us:hover {
+        padding: 3.5% 0 3.5% 0;
+        font-size: 142%;
+        margin: 1%;
     }
 
 }
@@ -6615,7 +6663,7 @@ h3 {
     #div-a-venir {
         display: grid;
         grid-template-rows: repeat(2 ,auto) 32% 25%;
-        padding: 0% 25% 0 25%;
+        padding: 0 25% 0 25%;
         height: 1500px;
     }
 
@@ -7068,21 +7116,25 @@ h3 {
     justify-self: center;
 }
 
-#img-reseaux-youtube {
+.img-reseaux-youtube {
     margin: 1% 0 0 10%;
     width: 35%;
+    position: absolute;
 }
 
-#img-reseaux-facebook {
+.img-reseaux-facebook {
     width: 28%;
+    position: absolute;
 }
 
-#img-reseaux-linkedin {
+.img-reseaux-linkedin {
     width: 55%;
+    position: absolute;
 }
 
-#img-reseaux-twitter {
+.img-reseaux-twitter {
     width: 65%;
+    position: absolute;
 }
 
 #div-nav-site {
@@ -7092,6 +7144,20 @@ h3 {
 
 .nav-site-gauche {
     margin-left: 35% !important;
+
+    transition: all 0.3s;
+}
+
+.nav-site-gauche:hover {
+    color: #2E1572;
+}
+
+#footer-rejoindre {
+    transition: all 0.3s;
+}
+
+#footer-rejoindre:hover {
+    color: #2E1572;
 }
 
 .nav-site-droite {
@@ -7102,6 +7168,8 @@ h3 {
     content: '●';
     color: #67D1FF;
     margin-right: 5%;
+
+    transition: all 0.3s;
 }
 
 #a-services {
@@ -7175,6 +7243,26 @@ h3 {
         justify-content: center;
         cursor: pointer;
         text-decoration: none;
+        position: relative;
+
+        transition: border 0.3s;
+    }
+
+    .a-reseaux:hover {
+        border: 4px solid #2E1572;
+    }
+
+    .img-reseaux-white {
+        transition: opacity 0.3s;
+        z-index: 0;
+    }
+
+    .img-reseaux-blue {
+        z-index: -1;
+    }
+
+    .a-reseaux:hover img:first-child {
+        opacity: 0;
     }
 
     #h3-nav-site {
@@ -7223,6 +7311,16 @@ h3 {
         letter-spacing: 0.03em;
         color: #67D1FF;
         margin: 7% 0 7% 35%;
+
+        transition: all 0.3s ease-in-out;
+    }
+
+    .a-sous-site:hover {
+        color: #FFFFFF;
+    }
+
+    .a-sous-site:hover::before {
+        color: #FFFFFF;
     }
 
     #p-copyright {
@@ -7297,6 +7395,11 @@ h3 {
         justify-content: center;
         cursor: pointer;
         text-decoration: none;
+        position: relative;
+    }
+
+    .img-reseaux-blue {
+        z-index: -1;
     }
 
     #h3-nav-site {
@@ -7419,6 +7522,11 @@ h3 {
         justify-content: center;
         cursor: pointer;
         text-decoration: none;
+        position: relative;
+    }
+
+    .img-reseaux-blue {
+        z-index: -1;
     }
 
     #h3-nav-site {
@@ -7541,6 +7649,11 @@ h3 {
         justify-content: center;
         cursor: pointer;
         text-decoration: none;
+        position: relative;
+    }
+
+    .img-reseaux-blue {
+        z-index: -1;
     }
 
     #h3-nav-site {

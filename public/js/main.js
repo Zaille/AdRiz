@@ -442,12 +442,29 @@ function header() {
         }
     });
 
+    $('#nav-adriz').mouseover( () => {
+        $('#nav-sous-adriz').css('height', '130px')
+        $('.span-sous-adriz').show();
+    })
+
+    $('#nav-adriz').mouseleave( () => {
+        $('#nav-sous-adriz').css('height', '0');
+        $('.span-sous-adriz').hide();
+    })
+
     $('#div-nav-accueil').click( () => { page.redirect('/'); });
     $('#div-nav-services').click( () => { page.redirect('/services'); });
     $('#div-nav-agence').click( () => { page.redirect('/agence'); });
     $('#div-nav-equipe').click( () => { page.redirect('/equipe'); });
     $('#div-nav-contact').click( () => { page.redirect('/contact'); });
     $('#div-nav-rejoindre').click( () => { page.redirect('/nous-rejoindre'); });
+
+    $('#nav-accueil').click( () => { page.redirect('/'); });
+    $('#nav-services').click( () => { page.redirect('/services'); });
+    $('#div-span-agence').click( () => { page.redirect('/agence'); });
+    $('#div-span-equipe').click( () => { page.redirect('/equipe'); });
+    $('#nav-contact').click( () => { page.redirect('/contact'); });
+    $('#nav-rejoindre').click( () => { page.redirect('/nous-rejoindre'); });
 
     $('#adriz-header').click( () => { page.redirect('/'); });
 }
@@ -476,10 +493,12 @@ function accueil(){
             $('#adriz-header').addClass('reduce-adriz');
             $('#menu').addClass('reduce-menu');
             $('header').addClass('color');
+            $('#nav-sous-adriz').addClass('margin');
         } else if ($(window).scrollTop() < 9) {
             $('#adriz-header').removeClass('reduce-adriz');
             $('#menu').removeClass('reduce-menu');
             $('header').removeClass('color');
+            $('#nav-sous-adriz').removeClass('margin');
         }
 
         if( $(window).scrollTop() > 350 ) {
