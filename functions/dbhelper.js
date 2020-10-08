@@ -1,11 +1,13 @@
 'use strict';
 
+require('dotenv').config({ path: './database.env' })
+
 const mysql = require('mysql');
 const dbCon = mysql.createConnection({
-    host: 'localhost',
-    user: 'admin',
-    password: 'password',
-    database: 'adrizdb',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     multipleStatements: true,
 });
 

@@ -1,7 +1,5 @@
 'use strict';
 
-const SESSION_REFRESH_TIME = 10000; // ms
-
 // fonction utilitaire permettant de faire du
 // lazy loading (chargement à la demande) des templates
 const templates = (() => {
@@ -16,6 +14,7 @@ const templates = (() => {
                 .then(text => {
                     return templates[url] = text;
                 });
+
         }
     };
 })();
@@ -27,10 +26,10 @@ const loadPartials = (() => {
     return async function loadPartials() {
         if (!partials) {
             partials = {
-                menu: templates('/public/templates/menu.mustache'),
-                header_accueil: templates('/public/templates/header-accueil.mustache'),
-                header_all: templates('/public/templates/header-all.mustache'),
-                footer: templates('/public/templates/footer.mustache')
+                menu: templates('../templates/menu.mustache'),
+                header_accueil: templates('../templates/header-accueil.mustache'),
+                header_all: templates('../templates/header-all.mustache'),
+                footer: templates('../templates/footer.mustache')
             };
             const promises = Object.entries(partials).map(async function ([k, v]) {
                 return [k, await v];
@@ -45,29 +44,6 @@ const loadPartials = (() => {
 const renderTemplate = async function (template, context) {
     // On charge les partials (si pas déà chargés)
     const partials = await loadPartials();
-    if (context.success) {
-        if (context.type === 3 || context.type === 2) {
-            // si etu ou prof
-            context.nom = context.nom.toUpperCase();
-            if (context.type === 3) {
-                context.show_profil = true;
-                context.show_pts_counter = true; // affiche # polypoint(s) et # point(s) de bonification
-                // si etu
-                if (!context.somme_pts_activite) context.somme_pts_activite = 0;
-                if (!context.somme_pts_evenement) context.somme_pts_evenement = 0;
-            }
-            else {
-                context.add_blank = true;
-            }
-        }
-        else {
-            context.show_admin_panel = true;
-            context.add_blank = true;
-
-            context.nom = 'ADMINISTRATEUR';
-            context.prenom = '';
-        }
-    }
 
     // On rend le template
     const rendered = Mustache.render(await template, context, partials);
@@ -76,25 +52,14 @@ const renderTemplate = async function (template, context) {
     let body = document.querySelector('body');
     body.innerHTML = rendered;
 
-    /*if (sessionGet('page_to_render') !== '') {
-        document.getElementById(sessionGet('page_to_render')).classList.add('active');
-    }*/
 };
 
-// Sale mais fonctionnel #JS..
-const sessionGet = (key) => JSON.parse(sessionStorage.getItem(key));
-const sessionSet = (key, value) => sessionStorage.setItem(key, JSON.stringify(value));
-
 /********** PAGE **********/
-
-// TODO : 404 Page
-// page('*', gestion404);
 
 /* -------- Accueil -------- */
 
 page('/', async function () {
-    sessionSet('page_to_render', '');
-    await renderTemplate(templates('/public/templates/accueil.mustache'), sessionGet('session'));
+    await renderTemplate(templates('../templates/accueil.mustache'));
     window.scrollTo(0, 0);
 
     accueil();
@@ -113,7 +78,7 @@ page('/', async function () {
 
     $('#input-send-newsletter').click( () => {
 
-        if( email.val().match(/^([\w-.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i) ){
+        if( email.val().toLowerCase().match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) ){
             $.ajax('/api/newsletter', {
                 data: { mail: email.val() },
                 method: 'POST'
@@ -166,8 +131,7 @@ page('/', async function () {
 /* -------- Services -------- */
 
 page('services', async function () {
-    sessionSet('page_to_render', 'services');
-    await renderTemplate(templates('/public/templates/services.mustache'), sessionGet('session'));
+    await renderTemplate(templates('../templates/services.mustache'));
     window.scrollTo(0, 0);
 
     header();
@@ -182,8 +146,7 @@ page('services', async function () {
 /* -------- Agence -------- */
 
 page('agence', async function () {
-    sessionSet('page_to_render', 'agence');
-    await renderTemplate(templates('/public/templates/agence.mustache'), sessionGet('session'));
+    await renderTemplate(templates('../templates/agence.mustache'));
     window.scrollTo(0, 0);
 
     header();
@@ -195,8 +158,7 @@ page('agence', async function () {
 /* -------- Équipe -------- */
 
 page('equipe', async function () {
-    sessionSet('page_to_render', 'equipe');
-    await renderTemplate(templates('/public/templates/equipe.mustache'), sessionGet('session'));
+    await renderTemplate(templates('../templates/equipe.mustache'));
     window.scrollTo(0, 0);
 
     header();
@@ -208,8 +170,7 @@ page('equipe', async function () {
 /* -------- Contact -------- */
 
 page('contact', async function () {
-    sessionSet('page_to_render', 'contact');
-    await renderTemplate(templates('/public/templates/contact.mustache'), sessionGet('session'));
+    await renderTemplate(templates('../templates/contact.mustache'));
     window.scrollTo(0, 0);
 
     header();
@@ -241,7 +202,7 @@ page('contact', async function () {
 
         let mailValid = true;
 
-        if( !mail.val().match(/^([\w-.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i) ){
+        if( !mail.val().toLowerCase().match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) ){
             $('#error-mail').fadeIn(500);
             mail.css('border', '2px solid red');
             mailValid = false;
@@ -335,8 +296,7 @@ page('contact', async function () {
 /* -------- Contact -------- */
 
 page('nous-rejoindre', async function () {
-    sessionSet('page_to_render', 'rejoindre');
-    await renderTemplate(templates('/public/templates/rejoindre.mustache'), sessionGet('session'));
+    await renderTemplate(templates('../templates/rejoindre.mustache'));
     window.scrollTo(0, 0);
 
     header();
@@ -351,7 +311,7 @@ page('nous-rejoindre', async function () {
     $('#input-contact-a-venir').click( () => { page.redirect('/contact'); })
     $('#input-send-newsletter-a-venir').click( () => {
 
-        if( email.val().match(/^([\w-.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i) ){
+        if( email.val().toLowerCase().match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) ){
             $.ajax('/api/newsletter', {
                 data: { mail: email.val() },
                 method: 'POST'
@@ -442,12 +402,14 @@ function header() {
         }
     });
 
-    $('#nav-adriz').mouseover( () => {
+    const nav = $('#nav-adriz');
+
+    nav.mouseover( () => {
         $('#nav-sous-adriz').css('height', '130px')
         $('.span-sous-adriz').show();
     })
 
-    $('#nav-adriz').mouseleave( () => {
+    nav.mouseleave( () => {
         $('#nav-sous-adriz').css('height', '0');
         $('.span-sous-adriz').hide();
     })
@@ -682,10 +644,12 @@ function service() {
             $('#adriz-header').addClass('reduce-adriz');
             $('#menu').addClass('reduce-menu');
             $('#gradient-header-contact').addClass('color-header');
+            $('#nav-sous-adriz').addClass('margin');
         } else if ($(window).scrollTop() < 9) {
             $('#adriz-header').removeClass('reduce-adriz');
             $('#menu').removeClass('reduce-menu');
             $('#gradient-header-contact').removeClass('color-header');
+            $('#nav-sous-adriz').removeClass('margin');
         }
 
         if ($(window).scrollTop() > 200) {
@@ -930,10 +894,12 @@ function agence() {
             $('#adriz-header').addClass('reduce-adriz');
             $('#menu').addClass('reduce-menu');
             $('#gradient-header-contact').addClass('color-header');
+            $('#nav-sous-adriz').addClass('margin');
         } else if ($(window).scrollTop() < 9) {
             $('#adriz-header').removeClass('reduce-adriz');
             $('#menu').removeClass('reduce-menu');
             $('#gradient-header-contact').removeClass('color-header');
+            $('#nav-sous-adriz').removeClass('margin');
         }
 
         if ($(window).scrollTop() > 150) {
@@ -1073,7 +1039,6 @@ async function switchHeader() {
 function equipe() {
 
 
-    $("#header-creation").show(1000);
     setTimeout(() => {
         $("#h1-creation").fadeIn(1000);
         setTimeout(() => {
@@ -1090,16 +1055,16 @@ function equipe() {
 
     $(window).scroll(() => {
 
-        console.log($(window).scrollTop());
-
         if ($(window).scrollTop() > 10) {
             $('#adriz-header').addClass('reduce-adriz');
             $('#menu').addClass('reduce-menu');
             $('#gradient-header-contact').addClass('color-header');
+            $('#nav-sous-adriz').addClass('margin');
         } else if ($(window).scrollTop() < 9) {
             $('#adriz-header').removeClass('reduce-adriz');
             $('#menu').removeClass('reduce-menu');
             $('#gradient-header-contact').removeClass('color-header');
+            $('#nav-sous-adriz').removeClass('margin');
         }
 
         if ($(window).scrollTop() > 200) {
@@ -1146,6 +1111,7 @@ function equipe() {
                 $('#h4-lucas').fadeIn(1000);
                 $('#h5-lucas').fadeIn(1000);
                 $('#linkedin-lucas').show(1000);
+                $('#linkedin-lucas-claire').show(1000);
                 $('#div-img-lucas').show(1000);
             });
         } else if ($(window).scrollTop() < 400) {
@@ -1154,6 +1120,7 @@ function equipe() {
             $('#h4-lucas').fadeOut();
             $('#h5-lucas').fadeOut();
             $('#linkedin-lucas').fadeOut();
+            $('#linkedin-lucas-claire').fadeOut(1000);
             $('#div-img-lucas').fadeOut();
         }
 
@@ -1163,6 +1130,7 @@ function equipe() {
                 $('#h4-julien').fadeIn(1000);
                 $('#h5-julien').fadeIn(1000);
                 $('#linkedin-julien').show(1000);
+                $('#linkedin-julien-claire').show(1000);
                 $('#div-img-julien').show(1000);
             });
         } else if ($(window).scrollTop() < 550) {
@@ -1171,6 +1139,7 @@ function equipe() {
             $('#h4-julien').fadeOut();
             $('#h5-julien').fadeOut();
             $('#linkedin-julien').fadeOut();
+            $('#linkedin-julien-claire').fadeOut(1000);
             $('#div-img-julien').fadeOut();
         }
 
@@ -1223,10 +1192,12 @@ function contact() {
             $('#adriz-header').addClass('reduce-adriz');
             $('#menu').addClass('reduce-menu');
             $('#gradient-header-contact').addClass('color-header');
+            $('#nav-sous-adriz').addClass('margin');
         } else if ($(window).scrollTop() < 9) {
             $('#adriz-header').removeClass('reduce-adriz');
             $('#menu').removeClass('reduce-menu');
             $('#gradient-header-contact').removeClass('color-header');
+            $('#nav-sous-adriz').removeClass('margin');
         }
     });
 }
@@ -1263,41 +1234,5 @@ function rejoindre() {
 
 }
 
-fetch('/api/session')
-    .then(res => res.json())
-    .then(session => {
-        sessionSet('session', session);
-
-        // On démarre le routing
-        page.base('/');
-        page.start();
-
-        setTimeout(() => {
-            refreshSession();
-        }, SESSION_REFRESH_TIME);
-
-        page(window.location.pathname);
-    }).catch((e) => console.log('Could not query the session ! -> ' + e));
-
-const refreshSession = function () {
-    if (sessionGet('session').success) {
-        fetch('/api/session')
-            .then(res => res.json())
-            .then(session => {
-                sessionSet('session', session);
-                setTimeout(() => {
-                    refreshSession();
-                }, SESSION_REFRESH_TIME);
-            }).catch((err) => {
-
-                console.log('Error:', err);
-
-                setTimeout(() => {
-                    refreshSession();
-                }, SESSION_REFRESH_TIME);
-            });
-    }
-    else {
-        // déconnecté, pas de refresh
-    }
-};
+page.base('/');
+page.start();

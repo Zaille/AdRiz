@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
 
 /********** ALL **********/
 
@@ -486,6 +486,7 @@ h3 {
         display: grid;
         grid-template-rows: repeat(2, 50%);
         width: 11.1%;
+        height: 0;
         background: #2E1572;
         margin-top: 92px;
 
@@ -1927,7 +1928,7 @@ h3 {
     padding: 3%;
     margin: 5% 5% 5% 0;
 
-    transition: all 0.5s ease-in-out;
+    transition: border 0.5s ease-in-out;
 }
 
 #input-email-newsletter:hover {
@@ -2822,6 +2823,12 @@ h3 {
         padding: 2% 5% 2% 5%;
         width: auto;
         cursor: pointer;
+
+        transition: background 0.3s;
+    }
+
+    #input-analyse:hover {
+        background: #c5cfff;
     }
 
 }
@@ -3524,6 +3531,13 @@ h3 {
         color: #FFFFFF;
         border: none;
         cursor: pointer;
+
+        transition: font-size 0.3s, padding 0.3s;
+    }
+
+    #input-question:hover {
+        font-size: 190%;
+        padding: 6.5%;
     }
 
 }
@@ -4271,6 +4285,14 @@ h3 {
         border: none;
         cursor: pointer;
         margin: 0 38% 0 38%;
+
+        transition: font-size 0.3s, padding 0.3s, margin 0.3s;
+    }
+
+    #input-rejoindre:hover {
+        font-size: 195%;
+        padding: 2.3%;
+        margin: 0 38.5% 0 38.5%;
     }
 
 }
@@ -5667,6 +5689,7 @@ h3 {
 .a-linkedin {
     justify-self: center;
     align-self: end;
+    position: relative;
 }
 
 #div-img-lucas {
@@ -5763,8 +5786,20 @@ h3 {
         margin: 2% 0 2% 0;
     }
 
-    .logo-linkedin {
+    .a-linkedin:hover img:first-child {
+        opacity: 0;
+    }
+
+    .linkedin-fonce {
+        position: absolute;
         height: 40px;
+
+        transition: opacity 0.3s;
+    }
+
+    .linkedin-claire {
+        height: 39px;
+        z-index: -1;
     }
 
     #img-lucas {
@@ -5834,6 +5869,7 @@ h3 {
         display: grid;
         grid-template-rows: 50% 50%;
         margin: 15% 0 5% 0;
+        height: 500px;
     }
 
     #p-contact {
@@ -5858,6 +5894,13 @@ h3 {
         padding: 2%;
         margin: 0 40% 0 40%;
         cursor: pointer;
+        transition: font-size 0.3s, padding 0.3s, margin 0.3s;
+    }
+
+    #button-contact:hover {
+        font-size: 191%;
+        padding: 1.8%;
+        margin: 0 40.2% 0 40.2%;
     }
 
 }
@@ -5943,8 +5986,14 @@ h3 {
         align-self: center;
     }
 
-    .logo-linkedin {
+    .linkedin-fonce {
+        position: absolute;
         height: 35px;
+    }
+
+    .linkedin-claire {
+        height: 34px;
+        z-index: -1;
     }
 
     #img-lucas {
@@ -6114,8 +6163,14 @@ h3 {
         align-self: center;
     }
 
-    .logo-linkedin {
+    .linkedin-fonce {
+        position: absolute;
         height: 30px;
+    }
+
+    .linkedin-claire {
+        height: 29px;
+        z-index: -1;
     }
 
     #img-lucas {
@@ -6290,8 +6345,14 @@ h3 {
         align-self: center;
     }
 
-    .logo-linkedin {
+    .linkedin-fonce {
         height: 20px;
+        position: absolute;
+    }
+
+    .linkedin-claire {
+        height: 19px;
+        z-index: -1;
     }
 
     #img-lucas {
@@ -6393,6 +6454,7 @@ h3 {
     height: 100% !important;
     top: 0 !important;
     left: 0 !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 #gradient-header-contact {
@@ -6476,6 +6538,11 @@ h3 {
         border-radius: 20px;
         padding: 3%;
         font-size: 120%;
+        transition: border 0.3s;
+    }
+
+    .input-form-contact:hover {
+        border: 2px solid #2E1572;
     }
 
     #input-form-submit {
@@ -6491,6 +6558,11 @@ h3 {
         cursor: pointer;
         text-align: center;
         align-self: center;
+        transition: background 0.3s;
+    }
+
+    #input-form-submit:hover {
+        background: #2E1572;
     }
 
 }
@@ -6707,6 +6779,11 @@ h3 {
         padding: 3%;
         margin: 2% 5% 2% 0;
         font-size: 110%;
+        transition: border 0.3s;
+    }
+
+    #input-email-newsletter-a-venir:hover {
+        border: 2px solid #2E1572;
     }
 
     #input-send-newsletter-a-venir {
@@ -6720,6 +6797,11 @@ h3 {
         border: none;
         font-size: 190%;
         cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    #input-send-newsletter-a-venir:hover {
+        background: #2E1572;
     }
 
     #label-contact-a-venir {
@@ -6748,6 +6830,11 @@ h3 {
         margin: 5% 0 20% 0;
         width: 20%;
         cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    #input-contact-a-venir:hover {
+        background: #c5cfff;
     }
 
     #validation-newsletter-a-venir {
