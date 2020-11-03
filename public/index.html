@@ -26,7 +26,32 @@
     </head>
 
     <body>
-        <!-- Quelque chose s'est mal passé :-( -->
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyDujtl-LSVgD8RofYvGI85Zc2qmDr6175E",
+                authDomain: "adriz-test.firebaseapp.com",
+                databaseURL: "https://adriz-test.firebaseio.com",
+                projectId: "adriz-test",
+                storageBucket: "adriz-test.appspot.com",
+                messagingSenderId: "22617378223",
+                appId: "1:22617378223:web:8dd4562bc4db936a6d335a",
+                measurementId: "G-BG1509NNRF"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+        </script>
+
     </body>
 
 </html>
