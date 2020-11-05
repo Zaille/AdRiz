@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
-
 /********** ALL **********/
 
 body {
@@ -1677,7 +1675,7 @@ h3 {
     border: 2px solid #2E1572;
 }
 
-#div-newsletter {
+#form-newsletter {
     display: grid;
     grid-template-rows: repeat(2, auto) 20px;
     grid-template-columns: 70% 30%;
@@ -1718,7 +1716,7 @@ h3 {
 
 @media all and ( min-width: 1301px ) {
 
-    #div-newsletter {
+    #form-newsletter {
         margin: 15% 25% 0 25%;
     }
 
@@ -1753,7 +1751,7 @@ h3 {
 
 @media all and ( min-width: 801px ) and ( max-width: 1300px ) {
 
-    #div-newsletter {
+    #form-newsletter {
         margin: 20% 15% 0 15%;
     }
 
@@ -1782,7 +1780,7 @@ h3 {
 
 @media all and ( min-width: 501px ) and ( max-width: 800px ) {
 
-    #div-newsletter {
+    #form-newsletter {
         margin: 20% 10% 0 10%;
     }
 
@@ -1811,7 +1809,7 @@ h3 {
 
 @media all and ( max-width: 500px) {
 
-    #div-newsletter {
+    #form-newsletter {
         margin: 20% 7% 0 7%;
     }
 
@@ -5656,7 +5654,7 @@ h3 {
     align-self: center;
 }
 
-#div-newsletter-a-venir {
+#form-newsletter-a-venir {
     display: grid;
     grid-template-columns: 70% 30%;
 }
@@ -5731,7 +5729,7 @@ h3 {
         font-size: 100%;
     }
 
-    #div-newsletter-a-venir {
+    #form-newsletter-a-venir {
         margin-top: 20%;
         grid-template-rows: 125px 100px 20px;
     }
@@ -5790,7 +5788,7 @@ h3 {
         font-size: 100%;
     }
 
-    #div-newsletter-a-venir {
+    #form-newsletter-a-venir {
         margin-top: 20%;
         grid-template-rows: 125px 80px 20px;
     }
@@ -5849,7 +5847,7 @@ h3 {
         font-size: 100%;
     }
 
-    #div-newsletter-a-venir {
+    #form-newsletter-a-venir {
         margin-top: 15%;
         grid-template-rows: 125px 80px 20px;
     }
@@ -5908,7 +5906,7 @@ h3 {
         font-size: 80%;
     }
 
-    #div-newsletter-a-venir {
+    #form-newsletter-a-venir {
         margin-top: 15%;
         grid-template-rows: 100px 60px 20px;
     }
@@ -6002,8 +6000,9 @@ h3 {
 
 #div-copyrigth {
     display: grid;
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(3, 33%);
     margin: 0 7% 0 7%;
+    position: relative;
 }
 
 #gradient-footer {
@@ -6100,6 +6099,23 @@ h3 {
     align-self: center;
     letter-spacing: 0.03em;
     color: #FFFFFF;
+    position: relative;
+}
+
+#a-mentions {
+    position: relative;
+    align-self: center;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+    justify-self: center;
+
+    transition: color 0.3s;
+}
+
+#a-mentions:hover {
+    color: #2E1572;
 }
 
 #adriz-footer {
@@ -6187,6 +6203,10 @@ h3 {
         font-size: 80%;
     }
 
+    #a-mentions {
+        font-size: 80%;
+    }
+
     #adriz-footer {
         width: 15%;
         margin: 2% 0 2% 0;
@@ -6245,6 +6265,10 @@ h3 {
     }
 
     #p-copyright {
+        font-size: 80%;
+    }
+
+    #a-mentions {
         font-size: 80%;
     }
 
@@ -6309,6 +6333,10 @@ h3 {
         font-size: 80%;
     }
 
+    #a-mentions {
+        font-size: 80%;
+    }
+
     #adriz-footer {
         width: 30%;
         margin: 5% 0 5% 0;
@@ -6367,6 +6395,10 @@ h3 {
     }
 
     #p-copyright {
+        font-size: 60%;
+    }
+
+    #a-mentions {
         font-size: 60%;
     }
 

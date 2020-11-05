@@ -3,14 +3,54 @@
 
     <head>
 
+        <title>AdRiz</title>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="images/favicon.ico" rel="shortcut icon"/>
+<!--        <meta content="À l'heure où la France est touchée par le COVID-19, nous vous proposons une plateforme qui a pour ambition d'aider. Elle permet à des bénévoles d'effectuer les courses de première nécessité pour ceux qui ne le peuvent pas."-->
+<!--              name="description"/>-->
+<!--        <meta content="Co-llectif,Collectif,Aide,Soutien,Courses,première nécessité,bénévolat,soignants" name="keywords">-->
+<!--        <meta content="#125488" name="theme-color"/>-->
+        <meta name="mobile-web-app-capable" content="yes">
+<!--        <link rel="icon" sizes="192x192" href="%PUBLIC_URL%/logo192.png">-->
+        <meta name="format-detection" content="all">
 
-        <title>AdRiz</title>
+<!--        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png"/>-->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+<!--        <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/logo192.png">-->
+<!--        <meta name="apple-mobile-web-app-status-bar-style" content="#125488"/>-->
+        <meta name="apple-mobile-web-app-title" content="AdRiz">
+
+        <!-- Open Graph / Facebook -->
+<!--        <meta content="website" property="og:type">-->
+<!--        <meta content="https://co-llectif.com/" property="og:url">-->
+<!--        <meta content="Co-llectif" property="og:title">-->
+<!--        <meta content="À l'heure où la France est touchée par le COVID-19, nous vous proposons une plateforme qui a pour ambition d'aider. Elle permet à des bénévoles d'effectuer les courses de première nécessité pour ceux qui ne le peuvent pas."-->
+<!--              property="og:description">-->
+<!--        <meta content="https://d2ee1ikne9mcc3.cloudfront.net/images/homepage/askforhelp.f083d780.png"-->
+<!--              property="og:image">-->
+
+        <!-- Twitter -->
+<!--        <meta content="summary_large_image" property="twitter:card">-->
+<!--        <meta content="https://co-llectif.com/" property="twitter:url">-->
+<!--        <meta content="Co-llectif" property="twitter:title">-->
+<!--        <meta content="À l'heure où la France est touchée par le COVID-19, nous vous proposons une plateforme qui a pour ambition d'aider. Elle permet à des bénévoles d'effectuer les courses de première nécessité pour ceux qui ne le peuvent pas."-->
+<!--              property="twitter:description">-->
+<!--        <meta content="https://d2ee1ikne9mcc3.cloudfront.net/images/homepage/askforhelp.f083d780.png"-->
+<!--              property="twitter:image">-->
+
+<!--        <meta content="Co-llectif" name="author">-->
+
+<!--        <link href="%PUBLIC_URL%/manifest.json" rel="manifest"/>-->
+<!--        <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/css/style.css"/>-->
 
         <!-------------- CSS -------------->
 
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" as="style">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <link rel="preconnect" href="https://firebasestorage.googleapis.com">
         <link rel="stylesheet" href="css/style.css">
 
         <!-------------- JavaScript -------------->
@@ -21,36 +61,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.11.4/page.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+        <script src="https://cdn.rawgit.com/h2non/jsHashes/master/hashes.js"></script>
         <script src="js/main.js"></script>
 
     </head>
 
     <body>
-
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-             https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
-
-        <script>
-            // Your web app's Firebase configuration
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            var firebaseConfig = {
-                apiKey: "AIzaSyDujtl-LSVgD8RofYvGI85Zc2qmDr6175E",
-                authDomain: "adriz-test.firebaseapp.com",
-                databaseURL: "https://adriz-test.firebaseio.com",
-                projectId: "adriz-test",
-                storageBucket: "adriz-test.appspot.com",
-                messagingSenderId: "22617378223",
-                appId: "1:22617378223:web:8dd4562bc4db936a6d335a",
-                measurementId: "G-BG1509NNRF"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-            firebase.analytics();
-        </script>
 
     </body>
 
