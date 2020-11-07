@@ -222,6 +222,9 @@ h3 {
     color: #FFFFFF;
     align-self: center;
     margin: 5%;
+    opacity: 0;
+
+    transition: opacity 0.5s;
 }
 
 #nav-menu {
@@ -244,11 +247,17 @@ h3 {
     color: #FFFFFF;
     align-self: center;
     margin-left: 5%;
+    opacity: 0;
+
+    transition: opacity 0.5s;
 }
 
 .img-sous-menu {
     justify-self: center;
     align-self: center;
+    opacity: 0;
+
+    transition: opacity 0.5s;
 }
 
 @media all and ( min-width: 801px ) and ( max-width: 1300px ){
@@ -371,8 +380,9 @@ h3 {
     background: #2E1572;
     color: #FFFFFF;
     cursor: pointer;
+    opacity: 0;
 
-    transition: background-color 0.3s, border 0.3s;
+    transition: background-color 0.3s, border 0.3s, opacity 1s;
 }
 
 #button-rejoindre-header:hover {
@@ -384,8 +394,9 @@ h3 {
     background: transparent;
     color: #2E1572;
     cursor: pointer;
+    opacity: 0;
 
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, opacity 1s;
 }
 
 #button-contacter-header:hover {
@@ -414,6 +425,9 @@ h3 {
     color: #2E1572;
     text-align: center;
     align-self: end;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #adriz-presentation {
@@ -422,10 +436,16 @@ h3 {
     color: #2E1572;
     text-align: center;
     align-self: center;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #digital-img {
     position: absolute;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #div-button {
@@ -455,11 +475,17 @@ h3 {
 #smma-definition {
     align-self: center;
     justify-self: center;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #smma-role {
     justify-self: center;
     align-self: center;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 .cursor {
@@ -1700,11 +1726,18 @@ h3 {
     cursor: pointer;
 }
 
+.show {
+    opacity: 1 !important;
+}
+
 #validation-newsletter {
     color: #5269FF;
     grid-column: 1 / 3;
     justify-self: center;
     align-self: center;
+    opacity: 0;
+
+    transition: opacity 0.5s;
 }
 
 .error-newsletter {
@@ -1712,6 +1745,9 @@ h3 {
     grid-column: 1 / 3;
     justify-self: center;
     text-align: center;
+    opacity: 0;
+
+    transition: opacity 0.5s;
 }
 
 @media all and ( min-width: 1301px ) {
@@ -1939,6 +1975,9 @@ h3 {
     position: relative;
     background: rgba( 46, 21, 114, 0.8 );
     align-self: center;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #img-header-service {
@@ -3096,16 +3135,25 @@ h3 {
     color: #FFFFFF;
     align-self: end;
     justify-self: center;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #span-its {
     color: #FFFFFF;
     justify-self: center;
     align-self: end;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 .span-titre-switch {
     color: #A8AEFF;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #hr-titre-agence {
@@ -3113,10 +3161,42 @@ h3 {
     justify-self: center;
     border: none;
     border-radius: 10px;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #div-sous-titre {
     display: grid;
+}
+
+.animation1 {
+    animation-name: animation1;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+}
+
+.animation2 {
+    animation-name: animation2;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes animation1 {
+    0% {opacity: 1;}
+    16.5% {opacity: 1;}
+    33% {opacity: 0;}
+    88.5% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes animation2 {
+    0% {opacity: 0;}
+    33% {opacity: 0}
+    49.5% {opacity: 1;}
+    66% {opacity: 1;}
+    88.5% {opacity: 0;}
+    100% {opacity: 0;}
 }
 
 .span-sous-titre {
@@ -3124,6 +3204,9 @@ h3 {
     align-self: end;
     font-weight: bold;
     color: #A8AEFF;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 @media all and ( min-width: 1301px ) {
@@ -4332,6 +4415,9 @@ h3 {
     letter-spacing: 0.03em;
     color: #2E1572;
     z-index: 20;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #h2-creation {
@@ -4340,6 +4426,9 @@ h3 {
     letter-spacing: 0.03em;
     color: #FFFFFF;
     z-index: 19;
+    opacity: 0;
+
+    transition: opacity 1s;
 }
 
 #div-rennes {
@@ -5378,19 +5467,16 @@ h3 {
     height: 100%;
 }
 
-.error-contact {
+#error-formulaire-contact {
     font-size: 85%;
     color: red;
     justify-self: center;
     text-align: center;
     margin-top: 3%;
-}
+    opacity: 0;
+    position: absolute;
 
-#error-message {
-    font-size: 85%;
-    color: red;
-    justify-self: center;
-    margin-top: 3%;
+    transition: opacity 0.5s;
 }
 
 #validation-formulaire-contact {
@@ -5398,6 +5484,10 @@ h3 {
     color: #5269FF;
     align-self: center;
     text-align: center;
+    opacity: 0;
+    position: relative;
+
+    transition: opacity 0.5s;
 }
 
 #h1-contact {
@@ -5409,6 +5499,7 @@ h3 {
 #form-contact {
     display: grid;
     grid-template-rows: repeat(3, 17%) auto 10% 5%;
+    position: relative;
 }
 
 .label-form-contact {
@@ -5615,6 +5706,8 @@ h3 {
     box-sizing: border-box;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     padding: 3%;
+
+    transition: border 0.5s;
 }
 
 #input-send-newsletter-a-venir {
@@ -5652,6 +5745,9 @@ h3 {
     margin: 5%;
     justify-self: center;
     align-self: center;
+    opacity: 0;
+
+    transition: opacity 0.5s;
 }
 
 #form-newsletter-a-venir {
@@ -5909,6 +6005,151 @@ h3 {
     #form-newsletter-a-venir {
         margin-top: 15%;
         grid-template-rows: 100px 60px 20px;
+    }
+
+}
+
+/********** MENTIONS LÉGALES **********/
+
+#h1-mentions {
+    color: #2E1572;
+    text-align: center;
+}
+
+#div-container-mention {
+    background: #e1e6fd;
+    border-radius: 40px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.h2-mention {
+    line-height: 150%;
+    margin-left: 2%;
+    color: #2E1572;
+}
+
+.p-mention {
+    line-height: 150%;
+}
+
+.p-presentation-mention {
+    color: #2E1572;
+}
+
+.a-mention {
+    text-decoration: none;
+
+    transition: color 0.5s;
+}
+
+.a-mention:hover {
+    color: #2E1572;
+}
+
+#a-mention-mail {
+    font-style: italic;
+}
+
+@media all and ( min-width: 1301px) {
+
+    #h1-mentions {
+        margin-top: 15%;
+        font-size: 300%;
+    }
+
+    .p-presentation-mention {
+        margin: 5% 25% 0 25%;
+    }
+
+    #div-container-mention {
+        margin: 10% 20% 0 20%;
+        padding: 5%;
+    }
+
+    .h2-mention {
+        font-size: 200%;
+    }
+
+    .p-mention {
+        font-size: 120%;
+    }
+
+    .p-article-mention {
+        margin-top: 3%;
+    }
+
+    .h2-margin {
+        margin-top: 10%;
+    }
+
+}
+
+@media all and ( min-width: 501px ) and ( max-width: 1300px ) {
+
+    #h1-mentions {
+        margin-top: 25%;
+        font-size: 250%;
+    }
+
+    .p-presentation-mention {
+        margin: 10% 5% 0 5%;
+    }
+
+    #div-container-mention {
+        margin: 10% 5% 0 5%;
+        padding: 10% 5% 10% 5%;
+        border-radius: 35px;
+    }
+
+    .h2-mention {
+        font-size: 150%;
+    }
+
+    .p-mention {
+        font-size: 100%;
+    }
+
+    .p-article-mention {
+        margin-top: 5%;
+    }
+
+    .h2-margin {
+        margin-top: 10%;
+    }
+
+}
+
+@media all and ( max-width: 500px) {
+
+    #h1-mentions {
+        margin-top: 40%;
+        font-size: 180%;
+    }
+
+    .p-presentation-mention {
+        margin: 15% 5% 0 5%;
+    }
+
+    #div-container-mention {
+        margin: 10% 5% 0 5%;
+        padding: 15% 5% 15% 5%;
+        border-radius: 25px;
+    }
+
+    .h2-mention {
+        font-size: 120%;
+    }
+
+    .p-mention {
+        font-size: 90%;
+    }
+
+    .p-article-mention {
+        margin-top: 8%;
+    }
+
+    .h2-margin {
+        margin-top: 15%;
     }
 
 }

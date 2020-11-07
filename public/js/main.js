@@ -1,19 +1,5 @@
 'use strict';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDujtl-LSVgD8RofYvGI85Zc2qmDr6175E",
-    authDomain: "adriz-test.firebaseapp.com",
-    databaseURL: "https://adriz-test.firebaseio.com",
-    projectId: "adriz-test",
-    storageBucket: "adriz-test.appspot.com",
-    messagingSenderId: "22617378223",
-    appId: "1:22617378223:web:8dd4562bc4db936a6d335a",
-    measurementId: "G-BG1509NNRF"
-};
-
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-
 const db = firebase.firestore();
 
 
@@ -99,23 +85,25 @@ page('/', async function () {
         e.preventDefault();
 
         let email = $('#input-email-newsletter');
+        let err = $('#error-interne-newsletter');
+        let validation = $('#validation-newsletter');
 
         let SHA256 = new Hashes.SHA256;
         db.collection("newsletter").doc(SHA256.hex(email.val().toLowerCase())).set({
             email: email.val().toLowerCase()
         }).then(function () {
             email.val('');
+
             email.css('border', '2px solid #5269FF');
-
-            $('#error-interne-newsletter').fadeOut(500);
-            $('#validation-newsletter').fadeIn(500).delay(3000).fadeOut(500);
-        }).catch(function (e) {
-            console.log(e);
-
+            err.css('opacity', 0);
+            validation.addClass('show')
+            setTimeout(() => {
+                validation.removeClass('show');
+            }, 3000)
+        }).catch(function () {
             email.css('border', '2px solid red');
-
-            $('#validation-newsletter').fadeOut(500);
-            $('#error-interne-newsletter').fadeIn(500);
+            validation.removeClass('show');
+            err.css('opacity', 1);
         });
 
     });
@@ -123,9 +111,9 @@ page('/', async function () {
     $('#input-join-us').click(() => {
         page.redirect('/nous-rejoindre');
     });
-    $('#adriz-footer').click(() => {
-        page.redirect('/');
-    });
+
+    footer();
+
 });
 
 /* -------- Services -------- */
@@ -144,6 +132,7 @@ page('services', async function () {
         page.redirect('/contact');
     });
 
+    footer();
 
 });
 
@@ -161,6 +150,8 @@ page('agence', async function () {
         page.redirect('/nous-rejoindre');
     });
 
+    footer();
+
 });
 
 /* -------- Équipe -------- */
@@ -175,6 +166,9 @@ page('equipe', async function () {
     $('#button-contact').click(() => {
         page.redirect('/contact');
     });
+
+    footer();
+
 });
 
 /* -------- Contact -------- */
@@ -194,6 +188,8 @@ page('contact', async function () {
         let prenom = $('#input-prenom');
         let mail = $('#input-mail');
         let message = $('#text-message');
+        let validation = $('#validation-formulaire-contact');
+        let err = $('#error-formulaire-contact');
 
         const data = {
             nom: nom.val().toLowerCase(),
@@ -210,18 +206,23 @@ page('contact', async function () {
                 mail.val('');
                 message.val('');
 
-                $('#error-formulaire-contact').fadeOut(500);
-                $('#validation-formulaire-contact').fadeIn(500).delay(3000).fadeOut(500);
+                err.css('opacity', 0);
+                validation.addClass('show');
+                setTimeout(() => {
+                    validation.removeClass('show');
+                }, 3000)
             }).catch(() => {
-                $('#validation-formulaire-contact').fadeOut(500);
-                $('#error-formulaire-contact').fadeIn(500);
+                validation.removeClass('show');
+                err.css('opacity', 1);
             });
+
+        footer();
 
     });
 
 });
 
-/* -------- Contact -------- */
+/* -------- Nous Rejoindre -------- */
 
 page('nous-rejoindre', async function () {
     await renderTemplate(templates('templates/rejoindre.mustache'));
@@ -231,6 +232,8 @@ page('nous-rejoindre', async function () {
     rejoindre();
 
     let email = $('#input-email-newsletter-a-venir');
+    let err = $('#error-interne-newsletter-a-venir');
+    let validation = $('#validation-newsletter-a-venir');
 
     $('#input-contact-a-venir').click(() => {
         page.redirect('/contact');
@@ -247,16 +250,47 @@ page('nous-rejoindre', async function () {
             email.val('');
             email.css('border', '2px solid #5269FF');
 
-            $('#error-interne-newsletter-a-venir').fadeOut(500);
-            $('#validation-newsletter-a-venir').fadeIn(500).delay(3000).fadeOut(500);
+            err.css('opacity', 0);
+            validation.addClass('show');
+            setTimeout(() => {
+                validation.removeClass('show');
+            }, 3000);
         }).catch(() => {
             email.css('border', '2px solid red');
 
-            $('#validation-newsletter-a-venir').fadeOut(500);
-            $('#error-interne-newsletter-a-venir').fadeIn(500);
+            validation.removeClass('show');
+            err.css('opacity', 1);
         });
     });
+
+    footer();
+
 });
+
+/* -------- Mentions Légales -------- */
+
+page('mention', async function () {
+
+    await renderTemplate(templates('templates/mention.mustache'));
+    window.scrollTo(0, 0);
+
+    header();
+    mention();
+    footer();
+
+});
+
+/* -------- FOOTER -------- */
+
+function footer(){
+    $('#adriz-footer').click(() => {
+        page.redirect('/');
+    });
+
+    $('#a-mentions').click(() => {
+        page.redirect('/mention');
+    });
+}
 
 /********** ANIMATIONS **********/
 
@@ -265,18 +299,18 @@ page('nous-rejoindre', async function () {
 function header() {
     $('#menu').click(() => {
         $('#div-menu').css('width', '100%').after(() => {
-            $('.span-menu').fadeIn(500);
+            $('.span-menu').css('opacity', 1);
         });
     });
 
     $('#div-close-menu').click(() => {
-        $('.span-menu').hide();
-        $('#div-menu').css('width', '0');
+        $('.span-menu').css('opacity', 0);
+        $('#div-menu').css('width', 0);
     });
 
     $('#button-close-menu').click(() => {
-        $('.span-menu').hide();
-        $('#div-menu').css('width', '0');
+        $('.span-menu').css('opacity', 0);
+        $('#div-menu').css('width', 0);
     });
 
     $('#div-nav-adriz').click(() => {
@@ -284,8 +318,8 @@ function header() {
         let div = $('#div-sous-menu');
 
         if (div.hasClass('show-sous-menu')) {
-            $('.img-sous-menu').fadeOut();
-            $('.span-sous-menu').fadeOut();
+            $('.img-sous-menu').css('opacity', 0);
+            $('.span-sous-menu').css('opacity', 0)
             setTimeout(() => {
                 div.removeClass('show-sous-menu');
                 setTimeout(() => {
@@ -296,8 +330,8 @@ function header() {
             div.addClass('show-sous-menu');
             setTimeout(() => {
                 $('#nav-menu').addClass('nav-sous-menu');
-                $('.img-sous-menu').fadeIn(750);
-                $('.span-sous-menu').fadeIn(750);
+                $('.img-sous-menu').css('opacity', 1);
+                $('.span-sous-menu').css('opacity', 1);
             }, 200)
         }
     });
@@ -345,28 +379,43 @@ function header() {
     });
 }
 
+function scrollHeader() {
+    $(window).scroll(() => {
+        if ($(window).scrollTop() > 10) {
+            $('#adriz-header').addClass('reduce-adriz');
+            $('#menu').addClass('reduce-menu');
+            $('#gradient-header-contact').addClass('color-header');
+            $('#nav-sous-adriz').addClass('margin');
+        } else if ($(window).scrollTop() < 9) {
+            $('#adriz-header').removeClass('reduce-adriz');
+            $('#menu').removeClass('reduce-menu');
+            $('#gradient-header-contact').removeClass('color-header');
+            $('#nav-sous-adriz').removeClass('margin');
+        }
+    });
+}
+
 /* -------- Accueil -------- */
 
 function accueil() {
 
-    $('h1').fadeIn(1000);
+    $('#h1-accueil').css('opacity', 1);
     setTimeout(() => {
-        $('#adriz-presentation').fadeIn(1000);
+        $('#adriz-presentation').css('opacity', 1);
         setTimeout(() => {
-            $('#digital-img').show(1000);
+            $('#digital-img').css('opacity', 1);
             setTimeout(() => {
-                $('#button-rejoindre-header').fadeIn(1000);
-                $('#button-contacter-header').fadeIn(1000);
+                $('#button-rejoindre-header').css('opacity', 1);
+                $('#button-contacter-header').css('opacity', 1);
                 setTimeout(() => {
-                    $('#smma-definition').fadeIn(1000);
-                    $('#smma-role').fadeIn(1000);
+                    $('#smma-definition').css('opacity', 1);
+                    $('#smma-role').css('opacity', 1);
                 }, 500);
             }, 250);
         }, 500);
     }, 500);
 
     $(window).scroll(() => {
-
         if ($(window).scrollTop() > 10) {
             $('#adriz-header').addClass('reduce-adriz');
             $('#menu').addClass('reduce-menu');
@@ -384,189 +433,58 @@ function accueil() {
 /* -------- Services -------- */
 
 function service() {
-
     setTimeout(() => {
-        $('#h1-services').fadeIn(1000);
+        $('#h1-services').css('opacity', 1);
     }, 500);
 
-    $(window).scroll(() => {
-
-        if ($(window).scrollTop() > 10) {
-            $('#adriz-header').addClass('reduce-adriz');
-            $('#menu').addClass('reduce-menu');
-            $('#gradient-header-contact').addClass('color-header');
-            $('#nav-sous-adriz').addClass('margin');
-        } else if ($(window).scrollTop() < 9) {
-            $('#adriz-header').removeClass('reduce-adriz');
-            $('#menu').removeClass('reduce-menu');
-            $('#gradient-header-contact').removeClass('color-header');
-            $('#nav-sous-adriz').removeClass('margin');
-        }
-
-    });
-}
-
-async function switchInbound() {
-
-
-    if ($('#div-inbound').css('display') === 'none') return
-    else $('#img-inbound-1').fadeIn();
-    setTimeout(() => {
-        if ($('#div-inbound').css('display') === 'none') return
-        else $('#img-inbound-2').fadeIn();
-        setTimeout(() => {
-            if ($('#div-inbound').css('display') === 'none') return
-            else $('#img-inbound-3').fadeIn();
-            setTimeout(() => {
-                if ($('#div-inbound').css('display') === 'none') return
-                else $('#img-inbound-4').fadeIn();
-                setTimeout(() => {
-                    if ($('#div-inbound').css('display') === 'none') return
-                    else $('#img-inbound-5').fadeIn();
-                    setTimeout(() => {
-                        if ($('#div-inbound').css('display') === 'none') return
-                        else $('#img-inbound-6').fadeIn();
-                        setTimeout(() => {
-                            if ($('#div-inbound').css('display') === 'none') return
-                            else $('#img-inbound-7').fadeIn();
-                            setTimeout(() => {
-                                if ($('#div-inbound').css('display') === 'none') return
-                                else $('#img-inbound-8').fadeIn();
-                                setTimeout(() => {
-                                    if ($('#div-inbound').css('display') === 'none') return
-                                    else $('#img-inbound-9').fadeIn();
-                                    setTimeout(() => {
-                                        $('#img-inbound-1').fadeOut(1000);
-                                        $('#img-inbound-2').fadeOut(1000);
-                                        $('#img-inbound-3').fadeOut(1000);
-                                        $('#img-inbound-4').fadeOut(1000);
-                                        $('#img-inbound-5').fadeOut(1000);
-                                        $('#img-inbound-6').fadeOut(1000);
-                                        $('#img-inbound-7').fadeOut(1000);
-                                        $('#img-inbound-8').fadeOut(1000);
-                                        $('#img-inbound-9').fadeOut(1000);
-                                        setTimeout(() => {
-                                            switchInbound();
-                                        }, 2000);
-                                    }, 3000);
-                                }, 1000);
-                            }, 1000);
-                        }, 1000);
-                    }, 1000);
-                }, 1000);
-            }, 1000);
-        }, 1000);
-    }, 1000);
+   scrollHeader();
 }
 
 /* -------- Agence -------- */
 
 function agence() {
 
-    $('#h1-titre-agence').fadeIn(1000);
+    $('#h1-titre-agence').css('opacity', 1);
     setTimeout(() => {
-        $('#span-its').fadeIn(1000);
+        $('#span-its').css('opacity', 1);
         setTimeout(() => {
-            $('#span-titre-our').fadeIn(1000);
-            $('#hr-titre-agence').show(1000);
+            $('#span-titre-our').css('opacity', 1);
+            $('#hr-titre-agence').css('opacity', 1);
             setTimeout(() => {
-                $('#h1-titre-agence-1').fadeIn(1000);
+                $('#h1-titre-agence-1').css('opacity', 1);
                 setTimeout(() => {
-                    $('#span-titre-1-1').fadeIn(1000);
+                    $('#span-titre-1-1').css('opacity', 1);
                 }, 250);
                 setTimeout(() => {
-                    $('#h1-titre-agence-2').fadeIn(1000);
+                    $('#h1-titre-agence-2').css('opacity', 1);
                     setTimeout(() => {
-                        $('#span-titre-2-1').fadeIn(1000);
+                        $('#span-titre-2-1').css('opacity', 1);
                     }, 250);
                     setTimeout(() => {
-                        $('#h1-titre-agence-3').fadeIn(1000);
+                        $('#h1-titre-agence-3').css('opacity', 1);
                         setTimeout(() => {
-                            $('#span-titre-3-1').fadeIn(1000);
+                            $('#span-titre-3-1').css('opacity', 1);
                         }, 250);
                         setTimeout(() => {
-                            $('#h1-titre-agence-4').fadeIn(1000);
+                            $('#h1-titre-agence-4').css('opacity', 1);
                             setTimeout(() => {
-                                $('#span-titre-4-1').fadeIn(1000);
+                                $('#span-titre-4-1').css('opacity', 1);
                             }, 250);
                             setTimeout(() => {
-                                switchHeader();
-                            }, 5000);
-                        }, 500);
-                    }, 500);
-                }, 500);
-            }, 500);
-        }, 250);
-    }, 250);
-
-    $(window).scroll(() => {
-
-        if ($(window).scrollTop() > 10) {
-            $('#adriz-header').addClass('reduce-adriz');
-            $('#menu').addClass('reduce-menu');
-            $('#gradient-header-contact').addClass('color-header');
-            $('#nav-sous-adriz').addClass('margin');
-        } else if ($(window).scrollTop() < 9) {
-            $('#adriz-header').removeClass('reduce-adriz');
-            $('#menu').removeClass('reduce-menu');
-            $('#gradient-header-contact').removeClass('color-header');
-            $('#nav-sous-adriz').removeClass('margin');
-        }
-
-    });
-
-}
-
-async function switchHeader() {
-
-    let titre = [];
-
-    titre.push($('#span-titre-our'));
-    titre.push($('#span-titre-1-1'));
-    titre.push($('#span-titre-2-1'));
-    titre.push($('#span-titre-3-1'));
-    titre.push($('#span-titre-4-1'));
-
-    titre.push($('#span-titre-your'));
-    titre.push($('#span-titre-1-2'));
-    titre.push($('#span-titre-2-2'));
-    titre.push($('#span-titre-3-2'));
-    titre.push($('#span-titre-4-2'));
-
-    setTimeout(() => {
-
-    });
-
-    titre[0].fadeOut(1000);
-    titre[1].fadeOut(1000);
-    titre[2].fadeOut(1000);
-    titre[3].fadeOut(1000);
-    titre[4].fadeOut(1000);
-
-    setTimeout(() => {
-        titre[5].fadeIn(1000);
-        titre[6].fadeIn(1000);
-        titre[7].fadeIn(1000);
-        titre[8].fadeIn(1000);
-        titre[9].fadeIn(1000);
-        setTimeout(() => {
-            titre[5].fadeOut(1000);
-            titre[6].fadeOut(1000);
-            titre[7].fadeOut(1000);
-            titre[8].fadeOut(1000);
-            titre[9].fadeOut(1000);
-            setTimeout(() => {
-                titre[0].fadeIn(1000);
-                titre[1].fadeIn(1000);
-                titre[2].fadeIn(1000);
-                titre[3].fadeIn(1000);
-                titre[4].fadeIn(1000);
-                setTimeout(() => {
-                    switchHeader();
-                }, 5000);
+                                $('.span-sous-titre-1').addClass('animation1');
+                                $('#span-titre-our').addClass('animation1')
+                                $('.span-sous-titre-2').addClass('animation2');
+                                $('#span-titre-your').addClass('animation2')
+                            }, 3000);
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
             }, 1000);
-        }, 5000);
-    }, 1000);
+        }, 500);
+    }, 500);
+
+    scrollHeader();
+
 }
 
 /* -------- Équipe -------- */
@@ -575,66 +493,31 @@ function equipe() {
 
 
     setTimeout(() => {
-        $("#h1-creation").fadeIn(1000);
+        $("#h1-creation").css('opacity', 1);
         setTimeout(() => {
-            $("#h2-creation").fadeIn(1000);
+            $("#h2-creation").css('opacity', 1);
         }, 500);
     }, 750);
 
-    $(window).scroll(() => {
-
-        if ($(window).scrollTop() > 10) {
-            $('#adriz-header').addClass('reduce-adriz');
-            $('#menu').addClass('reduce-menu');
-            $('#gradient-header-contact').addClass('color-header');
-            $('#nav-sous-adriz').addClass('margin');
-        } else if ($(window).scrollTop() < 9) {
-            $('#adriz-header').removeClass('reduce-adriz');
-            $('#menu').removeClass('reduce-menu');
-            $('#gradient-header-contact').removeClass('color-header');
-            $('#nav-sous-adriz').removeClass('margin');
-        }
-
-    });
-
+    scrollHeader();
 }
 
 /* -------- Contact -------- */
 
 function contact() {
-
-    $(window).scroll(() => {
-
-        if ($(window).scrollTop() > 10) {
-            $('#adriz-header').addClass('reduce-adriz');
-            $('#menu').addClass('reduce-menu');
-            $('#gradient-header-contact').addClass('color-header');
-            $('#nav-sous-adriz').addClass('margin');
-        } else if ($(window).scrollTop() < 9) {
-            $('#adriz-header').removeClass('reduce-adriz');
-            $('#menu').removeClass('reduce-menu');
-            $('#gradient-header-contact').removeClass('color-header');
-            $('#nav-sous-adriz').removeClass('margin');
-        }
-    });
+    scrollHeader();
 }
 
 /* -------- Nous Rejoindre -------- */
 
 function rejoindre() {
+    scrollHeader();
+}
 
-    $(window).scroll(() => {
-        if ($(window).scrollTop() > 10) {
-            $('#adriz-header').addClass('reduce-adriz');
-            $('#menu').addClass('reduce-menu');
-            $('#gradient-header-contact').addClass('color-header');
-        } else if ($(window).scrollTop() < 9) {
-            $('#adriz-header').removeClass('reduce-adriz');
-            $('#menu').removeClass('reduce-menu');
-            $('#gradient-header-contact').removeClass('color-header');
-        }
-    });
+/* -------- Mentions Légales -------- */
 
+function mention() {
+    scrollHeader();
 }
 
 page.base('/');
