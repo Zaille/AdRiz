@@ -965,7 +965,7 @@ h3 {
 
 #h2-service-1 {
     align-self: center;
-    /*text-align: justify;*/
+    text-align: center;
     letter-spacing: 0.03em;
     color: #2E1572;
 }
@@ -992,9 +992,9 @@ h3 {
 }
 
 #h2-service-2 {
-    margin: 25% 0 25% 10%;
+    margin: 25% 0 25% 0;
     align-self: center;
-    text-align: justify;
+    text-align: center;
     letter-spacing: 0.03em;
     color: #2E1572;
 }
@@ -2165,7 +2165,7 @@ h3 {
     }
 
     .icon-strategie {
-        width: 25%;
+        width: 20%;
     }
 
     .div-strategie-gauche {
@@ -5056,7 +5056,7 @@ h3 {
     }
 
     #presentation-julien {
-        padding: 5% 40% 5% 39%;
+        padding: 5% 39% 5% 39%;
     }
 
     #h3-julien {
@@ -5281,7 +5281,7 @@ h3 {
     }
 
     #presentation-julien {
-        padding: 7% 30% 7% 30%;
+        padding: 7% 28% 7% 28%;
     }
 
     #h3-julien {

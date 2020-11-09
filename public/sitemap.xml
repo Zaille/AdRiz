@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	<url>
-		<loc>https://adriz-test.web.app/</loc>
+		<loc>https://adriz.fr/</loc>
 	</url>
 	<url>
-		<loc>https://adriz-test.web.app/services</loc>
+		<loc>https://adriz.fr/services</loc>
 	</url>
 	<url>
-		<loc>https://adriz-test.web.app/contact</loc>
+		<loc>https://adriz.fr/contact</loc>
 	</url>
 	<url>
-		<loc>https://adriz-test.web.app/nous-rejoindre</loc>
+		<loc>https://adriz.fr/nous-rejoindre</loc>
 	</url>
 </urlset>

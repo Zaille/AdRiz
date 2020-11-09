@@ -15,5 +15,7 @@
     <orderEntry type="library" name="firebase-analytics" level="application" />
     <orderEntry type="library" name="hashes" level="application" />
     <orderEntry type="library" name="firebase-firestore" level="application" />
+    <orderEntry type="library" name="page" level="application" />
+    <orderEntry type="library" name="mustache" level="application" />
   </component>
 </module>

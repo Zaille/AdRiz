@@ -60,7 +60,7 @@ const renderTemplate = async function (template, context) {
 
 /* -------- Accueil -------- */
 
-page('/', async function () {
+page('/', async () => {
     await renderTemplate(templates('templates/accueil.mustache'));
     window.scrollTo(0, 0);
 
@@ -118,7 +118,7 @@ page('/', async function () {
 
 /* -------- Services -------- */
 
-page('services', async function () {
+page('/services', async () => {
     await renderTemplate(templates('templates/services.mustache'));
     window.scrollTo(0, 0);
 
@@ -138,7 +138,7 @@ page('services', async function () {
 
 /* -------- Agence -------- */
 
-page('agence', async function () {
+page('/agence', async () => {
 
     await renderTemplate(templates('templates/agence.mustache'));
     window.scrollTo(0, 0);
@@ -156,7 +156,7 @@ page('agence', async function () {
 
 /* -------- Équipe -------- */
 
-page('equipe', async function () {
+page('/equipe', async () => {
     await renderTemplate(templates('templates/equipe.mustache'));
     window.scrollTo(0, 0);
 
@@ -173,7 +173,7 @@ page('equipe', async function () {
 
 /* -------- Contact -------- */
 
-page('contact', async function () {
+page('/contact', async () => {
     await renderTemplate(templates('templates/contact.mustache'));
     window.scrollTo(0, 0);
 
@@ -224,7 +224,7 @@ page('contact', async function () {
 
 /* -------- Nous Rejoindre -------- */
 
-page('nous-rejoindre', async function () {
+page('/nous-rejoindre', async () => {
     await renderTemplate(templates('templates/rejoindre.mustache'));
     window.scrollTo(0, 0);
 
@@ -269,7 +269,7 @@ page('nous-rejoindre', async function () {
 
 /* -------- Mentions Légales -------- */
 
-page('mention', async function () {
+page('/mention', async () => {
 
     await renderTemplate(templates('templates/mention.mustache'));
     window.scrollTo(0, 0);
@@ -279,6 +279,14 @@ page('mention', async function () {
     footer();
 
 });
+
+/* -------- Error 404 -------- */
+
+page('*', '/');
+
+/* -------- Lancement de Page -------- */
+
+page();
 
 /* -------- FOOTER -------- */
 
@@ -519,6 +527,3 @@ function rejoindre() {
 function mention() {
     scrollHeader();
 }
-
-page.base('/');
-page.start();

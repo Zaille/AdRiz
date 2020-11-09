@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adriz-test.web.app/sitemap.xml
+Sitemap: https://adriz.fr/sitemap.xml

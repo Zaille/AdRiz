@@ -3,12 +3,10 @@
     "public": "public",
     "ignore": [
       "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+      "**/.*"
     ],
     "rewrites": [
-      {
-        "source": "**",
+      { "source": "**",
         "destination": "/index.html"
       }
     ],
