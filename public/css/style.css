@@ -14,7 +14,7 @@ body {
 header {
     display: grid;
     position: fixed;
-    z-index: 9999;
+    z-index: 9997;
     top: 0;
     width: 100%;
 
@@ -152,6 +152,295 @@ h3 {
     grid-row: 14 / 15;
 }
 
+/********** COOKIE **********/
+
+#div-container-cookie {
+    display: none;
+    justify-content: center;
+    position: fixed;
+    z-index: 9999;
+}
+
+#div-background-cookie {
+    height: 100%;
+    width: 100%;
+    background: #2E1572;
+    opacity: 70%;
+    position: fixed;
+    z-index: 1;
+}
+
+#div-cookie {
+    justify-items: center;
+    padding: 1%;
+    background: #e7dfff;
+    z-index: 2;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+}
+
+#div-cookie::-webkit-scrollbar {
+    width: 10px;
+}
+#div-cookie::-webkit-scrollbar-thumb {
+    background: #546BFF;
+    border-radius: 10px;
+}
+
+#div-cookie::-webkit-scrollbar-track-piece {
+    margin: 30px;
+}
+
+#div-cookie::-webkit-scrollbar-thumb:hover {
+    background: #2E1572;
+}
+
+#presentation-cookie {
+    position: absolute;
+
+    transition: opacity 0.5s;
+}
+
+.div-container-cookie {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+}
+
+.p-cookie-title {
+    font-weight: bold;
+    color: #2e1572;
+    text-align: center;
+    line-height: 150%;
+}
+
+.p-cookie-sous-title {
+    font-weight: bold;
+    color: #546BFF;
+    margin: 5% 2% 2% 10%;
+    font-size: 130%;
+}
+
+.p-cookie {
+    color: #2e1572;
+    line-height: 175%;
+    text-align: justify;
+}
+
+.div-input-cookie {
+    grid-row: 3/4;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+}
+
+.input-cookie {
+    font-weight: bold;
+    align-self: center;
+    cursor: pointer;
+
+    transition: background 0.5s, border 0.5s;
+}
+
+.input-cookie-1 {
+    color: #e7dfff;
+    background: #2e1572;
+    border: #2e1572 solid 3px;
+    justify-self: end;
+    margin-right: 10%;
+}
+
+.input-cookie-1:hover {
+    background: #5271FF;
+    border: #5271FF solid 3px;
+}
+
+.input-cookie-2  {
+    color: #2e1572;
+    background: transparent;
+    border: #2e1572 solid 3px;
+    justify-self: start;
+    margin-left: 10%;
+}
+
+.input-cookie-2:hover {
+    border: #5271FF solid 3px;
+    color: #5271FF;
+}
+
+#div-plus-cookie {
+    visibility: hidden;
+    opacity: 0;
+    position: relative;
+
+    transition: opacity 0.5s;
+}
+
+.a-cookie {
+    text-decoration: none;
+
+    transition: color 0.5s;
+}
+
+.a-cookie:hover {
+    color: #2E1572;
+}
+
+#a-cookie-mail {
+    font-style: italic;
+}
+
+@media all and ( min-width: 1301px ) {
+
+    #div-cookie {
+        border-radius: 30px;
+        height: 300px;
+        margin-top: 15%;
+        width: 65%;
+    }
+
+    .p-cookie-title {
+        font-size: 150%;
+        margin: 1% 2% 2% 2%;
+    }
+
+    .p-cookie {
+        margin: 2% 5% 2% 5%;
+        font-size: 110%;
+    }
+
+    #p-cookie-presentation {
+        text-align: center;
+    }
+
+    #div-input-cookie {
+        margin-top: 2%;
+    }
+
+    .input-cookie {
+        padding: 3% 0 3% 0;
+        font-size: 120%;
+        border-radius: 20px;
+        width: 31%;
+    }
+
+    #div-input-cookie-plus {
+        margin: 2% 0 3% 0;
+    }
+
+}
+
+@media all and ( min-width: 801px ) and ( max-width: 1300px ) {
+
+    #div-cookie {
+        border-radius: 25px;
+        height: 290px;
+        margin-top: 22%;
+        width: 65%;
+    }
+
+    .p-cookie-title {
+        font-size: 130%;
+        margin: 2% 4% 4% 4%;
+    }
+
+    .p-cookie {
+        margin: 2% 5% 2% 5%;
+        font-size: 100%;
+    }
+
+    .input-cookie {
+        padding: 4% 0 4% 0;
+        font-size: 110%;
+        border-radius: 15px;
+        width: 45%;
+    }
+
+    #div-input-cookie {
+        margin-top: 2%;
+    }
+
+    #div-input-cookie-plus {
+        margin: 2% 0 3% 0;
+    }
+
+}
+
+@media all and ( min-width: 501px ) and ( max-width: 800px ) {
+
+    #div-cookie {
+        border-radius: 25px;
+        height: 293px;
+        margin-top: 40%;
+        width: 85%;
+    }
+
+    .p-cookie-title {
+        font-size: 120%;
+        margin: 3% 4% 4% 4%;
+    }
+
+    .p-cookie {
+        margin: 2% 5% 2% 5%;
+        font-size: 110%;
+    }
+
+    .input-cookie {
+        padding: 4% 0 4% 0;
+        font-size: 110%;
+        border-radius: 15px;
+        width: 45%;
+    }
+
+    #div-input-cookie {
+        margin-top: 3%;
+    }
+
+    #div-input-cookie-plus {
+        margin: 3% 0 4% 0;
+    }
+
+}
+
+@media all and ( max-width: 500px ) {
+
+    #div-cookie {
+        border-radius: 20px;
+        height: 285px;
+        margin-top: 50%;
+        width: 90%;
+    }
+
+    .p-cookie-title {
+        font-size: 100%;
+        margin: 5% 7% 5% 7%;
+    }
+
+    .p-cookie {
+        margin: 3% 5% 2% 5%;
+        font-size: 85%;
+    }
+
+    .input-cookie {
+        padding: 5% 0 5% 0;
+        font-size: 90%;
+        border-radius: 13px;
+        width: 70%;
+    }
+
+    #div-input-cookie {
+        margin-top: 5%;
+    }
+
+    #div-input-cookie-plus {
+        margin: 5% 0 6% 0;
+    }
+
+}
+
 /********** MENU **********/
 
 #div-menu {
@@ -260,7 +549,7 @@ h3 {
     transition: opacity 0.5s;
 }
 
-@media all and ( min-width: 801px ) and ( max-width: 1300px ){
+@media all and ( min-width: 801px ) and ( max-width: 1300px ) {
 
     .img-menu {
         width: 30px;
@@ -292,7 +581,7 @@ h3 {
 
 }
 
-@media all and ( min-width: 501px ) and ( max-width: 800px ){
+@media all and ( min-width: 501px ) and ( max-width: 800px ) {
 
     .img-menu {
         width: 25px;
@@ -530,7 +819,9 @@ h3 {
         background: #2E1572;
     }
 
-
+    #nav-adriz {
+        cursor: default !important;
+    }
 
     #nav-adriz:hover #nav-sous-adriz {
         height: 130px;
@@ -615,9 +906,15 @@ h3 {
     }
 
     @keyframes move {
-        0%   {top:150px;}
-        50%  {top:170px;}
-        100% {top:150px;}
+        0% {
+            top: 150px;
+        }
+        50% {
+            top: 170px;
+        }
+        100% {
+            top: 150px;
+        }
     }
 
     #div-button {
@@ -1401,7 +1698,6 @@ h3 {
 
 #div-more-info {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
@@ -1973,7 +2269,7 @@ h3 {
     text-align: center;
     color: #FFFFFF;
     position: relative;
-    background: rgba( 46, 21, 114, 0.8 );
+    background: rgba(46, 21, 114, 0.8);
     align-self: center;
     opacity: 0;
 
@@ -2140,6 +2436,10 @@ h3 {
     align-self: center;
 }
 
+#img-pack {
+    margin: 4% 20% 5% 17%;
+}
+
 @media all and ( min-width: 1301px ) {
 
     #div-strategie {
@@ -2164,8 +2464,12 @@ h3 {
         font-size: 150%;
     }
 
-    .icon-strategie {
+    #img-pack {
         width: 20%;
+    }
+
+    .icon-strategie {
+        width: 25%;
     }
 
     .div-strategie-gauche {
@@ -2225,6 +2529,10 @@ h3 {
 
     #img-strategie {
         left: -15%;
+    }
+
+    #img-pack {
+        width: 30%;
     }
 
     .icon-strategie {
@@ -2290,6 +2598,10 @@ h3 {
         left: -20%
     }
 
+    #img-pack {
+        width: 30%;
+    }
+
     .icon-strategie {
         width: 35%;
     }
@@ -2349,6 +2661,10 @@ h3 {
 
     #img-strategie {
         left: -50%
+    }
+
+    #img-pack {
+        width: 30%;
     }
 
     .icon-strategie {
@@ -2843,7 +3159,7 @@ h3 {
 
 }
 
-@media all and ( min-width: 801px ) and ( max-width: 1300px ){
+@media all and ( min-width: 801px ) and ( max-width: 1300px ) {
 
     #div-gif-inbound {
         border-radius: 25px;
@@ -2944,7 +3260,7 @@ h3 {
 
 }
 
-@media all and ( min-width: 501px ) and ( max-width: 800px ){
+@media all and ( min-width: 501px ) and ( max-width: 800px ) {
 
     #div-automatisation {
         height: 550px;
@@ -3183,20 +3499,42 @@ h3 {
 }
 
 @keyframes animation1 {
-    0% {opacity: 1;}
-    16.5% {opacity: 1;}
-    33% {opacity: 0;}
-    88.5% {opacity: 0;}
-    100% {opacity: 1;}
+    0% {
+        opacity: 1;
+    }
+    16.5% {
+        opacity: 1;
+    }
+    33% {
+        opacity: 0;
+    }
+    88.5% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes animation2 {
-    0% {opacity: 0;}
-    33% {opacity: 0}
-    49.5% {opacity: 1;}
-    66% {opacity: 1;}
-    88.5% {opacity: 0;}
-    100% {opacity: 0;}
+    0% {
+        opacity: 0;
+    }
+    33% {
+        opacity: 0
+    }
+    49.5% {
+        opacity: 1;
+    }
+    66% {
+        opacity: 1;
+    }
+    88.5% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .span-sous-titre {
@@ -3221,7 +3559,7 @@ h3 {
     }
 
     #div-meeting-content {
-        grid-template-rows: repeat(2,auto);
+        grid-template-rows: repeat(2, auto);
         margin: 1% 33% 0 28%;
     }
 
@@ -3274,7 +3612,7 @@ h3 {
     }
 
     #div-meeting-content {
-        grid-template-rows: repeat(2,auto);
+        grid-template-rows: repeat(2, auto);
         margin: 2% 20% 0 14%;
     }
 
@@ -3328,7 +3666,7 @@ h3 {
     }
 
     #div-meeting-content {
-        grid-template-rows: repeat(2,auto);
+        grid-template-rows: repeat(2, auto);
         margin: 4% 12% 0 7%;
     }
 
@@ -6032,6 +6370,10 @@ h3 {
     line-height: 150%;
 }
 
+.li-mention {
+    margin-left: 10%;
+}
+
 .p-presentation-mention {
     color: #2E1572;
 }
@@ -6074,6 +6416,10 @@ h3 {
         font-size: 120%;
     }
 
+    .li-mention {
+        font-size: 120%;
+    }
+
     .p-article-mention {
         margin-top: 3%;
     }
@@ -6109,6 +6455,10 @@ h3 {
         font-size: 100%;
     }
 
+    .li-mention {
+        font-size: 100%;
+    }
+
     .p-article-mention {
         margin-top: 5%;
     }
@@ -6141,6 +6491,10 @@ h3 {
     }
 
     .p-mention {
+        font-size: 90%;
+    }
+
+    .li-mention {
         font-size: 90%;
     }
 
@@ -6200,6 +6554,7 @@ h3 {
 
 .nav-site-gauche {
     margin-left: 35% !important;
+    cursor: pointer;
 
     transition: all 0.3s;
 }
@@ -6210,6 +6565,7 @@ h3 {
 
 #footer-rejoindre {
     transition: all 0.3s;
+    cursor: pointer;
 }
 
 #footer-rejoindre:hover {
@@ -6228,7 +6584,7 @@ h3 {
     transition: all 0.3s;
 }
 
-#a-services {
+#footer-services {
     grid-row: 2 / 4;
 }
 
@@ -6333,6 +6689,7 @@ h3 {
     letter-spacing: 0.03em;
     color: #67D1FF;
     margin: 7% 0 7% 35%;
+    cursor: pointer;
 }
 
 #p-copyright {

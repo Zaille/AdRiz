@@ -1,7 +1,19 @@
 'use strict';
 
-const db = firebase.firestore();
+const firebaseConfig = {
+    apiKey: "AIzaSyDujtl-LSVgD8RofYvGI85Zc2qmDr6175E",
+    authDomain: "adriz-test.firebaseapp.com",
+    databaseURL: "https://adriz-test.firebaseio.com",
+    projectId: "adriz-test",
+    storageBucket: "adriz-test.appspot.com",
+    messagingSenderId: "22617378223",
+    appId: "1:22617378223:web:8dd4562bc4db936a6d335a",
+    measurementId: "G-BG1509NNRF"
+};
 
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
 
 // fonction utilitaire permettant de faire du
 // lazy loading (chargement à la demande) des templates
@@ -31,6 +43,7 @@ const loadPartials = (() => {
                 menu: templates('templates/menu.mustache'),
                 header_accueil: templates('templates/header-accueil.mustache'),
                 header_all: templates('templates/header-all.mustache'),
+                cookie: templates('templates/cookie.mustache'),
                 footer: templates('templates/footer.mustache')
             };
             const promises = Object.entries(partials).map(async function ([k, v]) {
@@ -61,26 +74,37 @@ const renderTemplate = async function (template, context) {
 /* -------- Accueil -------- */
 
 page('/', async () => {
+
     await renderTemplate(templates('templates/accueil.mustache'));
-    window.scrollTo(0, 0);
 
     accueil();
     header();
+    footer();
+
+    window.scrollTo(0, 0);
+
+    if (localStorage.getItem('cookie') == null) cookie();
+
+    if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('screen_view');
 
     $('#button-rejoindre-header').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'rejoindre-header'});
         page.redirect('/nous-rejoindre');
     });
     $('#button-contacter-header').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'contact-header'});
         page.redirect('/contact');
     });
     $('#input-contact').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'contact-body'});
         page.redirect('/contact');
     });
     $('#input-more-info').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'services-body'});
         page.redirect('/services');
     });
 
-    $('#form-newsletter').submit( e => {
+    $('#form-newsletter').submit(e => {
 
         e.preventDefault();
 
@@ -92,6 +116,9 @@ page('/', async () => {
         db.collection("newsletter").doc(SHA256.hex(email.val().toLowerCase())).set({
             email: email.val().toLowerCase()
         }).then(function () {
+
+            if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('newsletter');
+
             email.val('');
 
             email.css('border', '2px solid #5269FF');
@@ -101,6 +128,9 @@ page('/', async () => {
                 validation.removeClass('show');
             }, 3000)
         }).catch(function () {
+
+            if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('exception', {action: 'newsletter'});
+
             email.css('border', '2px solid red');
             validation.removeClass('show');
             err.css('opacity', 1);
@@ -109,10 +139,9 @@ page('/', async () => {
     });
 
     $('#input-join-us').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'rejoindre-body'});
         page.redirect('/nous-rejoindre');
     });
-
-    footer();
 
 });
 
@@ -120,19 +149,25 @@ page('/', async () => {
 
 page('/services', async () => {
     await renderTemplate(templates('templates/services.mustache'));
-    window.scrollTo(0, 0);
 
     header();
     service();
+    footer();
+
+    window.scrollTo(0, 0);
+
+    if (localStorage.getItem('cookie') == null) cookie();
+
+    if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('screen_view');
 
     $('#input-analyse').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'rejoindre'});
         page.redirect('/nous-rejoindre');
     });
     $('#input-question').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'contact'});
         page.redirect('/contact');
     });
-
-    footer();
 
 });
 
@@ -141,46 +176,75 @@ page('/services', async () => {
 page('/agence', async () => {
 
     await renderTemplate(templates('templates/agence.mustache'));
-    window.scrollTo(0, 0);
 
     header();
     agence();
-
-    $('#input-rejoindre').click(() => {
-        page.redirect('/nous-rejoindre');
-    });
-
     footer();
 
+    window.scrollTo(0, 0);
+
+    if (localStorage.getItem('cookie') == null) cookie();
+
+    if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('screen_view');
+
+    $('#input-rejoindre').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'rejoindre'});
+        page.redirect('/nous-rejoindre');
+    });
 });
 
 /* -------- Équipe -------- */
 
 page('/equipe', async () => {
+
+
     await renderTemplate(templates('templates/equipe.mustache'));
-    window.scrollTo(0, 0);
 
     header();
     equipe();
+    footer();
 
-    $('#button-contact').click(() => {
-        page.redirect('/contact');
+    window.scrollTo(0, 0);
+
+    if (localStorage.getItem('cookie') == null) cookie();
+
+    if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('screen_view');
+
+    $('#a-linkedin-lucas').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'linkedin-lucas'});
+        location.replace('https://www.linkedin.com/in/hervouet-lucas/');
     });
 
-    footer();
+    $('#a-linkedin-julien').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'linkedin-julien'});
+        location.replace('https://www.linkedin.com/in/julien-waisse-4318b41b4/');
+    });
+
+    $('#button-contact').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'contact'});
+        page.redirect('/contact');
+    });
 
 });
 
 /* -------- Contact -------- */
 
 page('/contact', async () => {
+
     await renderTemplate(templates('templates/contact.mustache'));
-    window.scrollTo(0, 0);
 
     header();
     contact();
+    footer();
 
-    $('#form-contact').submit( e => {
+    window.scrollTo(0, 0);
+
+    if (localStorage.getItem('cookie') == null) cookie();
+
+    if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('screen_view');
+
+
+    $('#form-contact').submit(e => {
 
         e.preventDefault();
 
@@ -190,17 +254,25 @@ page('/contact', async () => {
         let message = $('#text-message');
         let validation = $('#validation-formulaire-contact');
         let err = $('#error-formulaire-contact');
+        let date = new Date();
+
+        date = ("0" + date.getDate()).slice(-2) + '/' + ("0" + (date.getMonth() + 1)).slice(-2) + '/' +
+            date.getFullYear() + ' ' + ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2)
+            + ':' + ("0" + date.getSeconds()).slice(-2);
 
         const data = {
             nom: nom.val().toLowerCase(),
             prenom: prenom.val().toLowerCase(),
             mail: mail.val().toLowerCase(),
-            message: message.val().toLowerCase()
+            message: message.val().toLowerCase(),
+            date: date
         };
 
-        let SHA256 = new Hashes.SHA256;
-        db.collection("contact").doc(SHA256.hex(data.mail)).set(data)
+        db.collection("contact").add(data)
             .then(() => {
+
+                if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('contact');
+
                 nom.val('');
                 prenom.val('');
                 mail.val('');
@@ -212,12 +284,12 @@ page('/contact', async () => {
                     validation.removeClass('show');
                 }, 3000)
             }).catch(() => {
-                validation.removeClass('show');
-                err.css('opacity', 1);
-            });
 
-        footer();
+            if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('exception', {action: 'contact'});
 
+            validation.removeClass('show');
+            err.css('opacity', 1);
+        });
     });
 
 });
@@ -225,21 +297,29 @@ page('/contact', async () => {
 /* -------- Nous Rejoindre -------- */
 
 page('/nous-rejoindre', async () => {
+
     await renderTemplate(templates('templates/rejoindre.mustache'));
-    window.scrollTo(0, 0);
 
     header();
     rejoindre();
+    footer();
+
+    window.scrollTo(0, 0);
+
+    if (localStorage.getItem('cookie') == null) cookie();
+
+    if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('screen_view');
 
     let email = $('#input-email-newsletter-a-venir');
     let err = $('#error-interne-newsletter-a-venir');
     let validation = $('#validation-newsletter-a-venir');
 
     $('#input-contact-a-venir').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'contact'});
         page.redirect('/contact');
     })
 
-    $('#form-newsletter-a-venir').submit( e => {
+    $('#form-newsletter-a-venir').submit(e => {
 
         e.preventDefault();
 
@@ -247,6 +327,9 @@ page('/nous-rejoindre', async () => {
         db.collection("newsletter").doc(SHA256.hex(email.val().toLowerCase())).set({
             email: email.val().toLowerCase()
         }).then(() => {
+
+            if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('newsletter');
+
             email.val('');
             email.css('border', '2px solid #5269FF');
 
@@ -256,15 +339,15 @@ page('/nous-rejoindre', async () => {
                 validation.removeClass('show');
             }, 3000);
         }).catch(() => {
+
+            if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('exception', {action: 'newsletter'});
+
             email.css('border', '2px solid red');
 
             validation.removeClass('show');
             err.css('opacity', 1);
         });
     });
-
-    footer();
-
 });
 
 /* -------- Mentions Légales -------- */
@@ -272,11 +355,16 @@ page('/nous-rejoindre', async () => {
 page('/mention', async () => {
 
     await renderTemplate(templates('templates/mention.mustache'));
-    window.scrollTo(0, 0);
 
     header();
     mention();
     footer();
+
+    window.scrollTo(0, 0);
+
+    if (localStorage.getItem('cookie') == null) cookie();
+
+    if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('screen_view');
 
 });
 
@@ -290,13 +378,95 @@ page();
 
 /* -------- FOOTER -------- */
 
-function footer(){
+function footer() {
+    $('#a-reseaux-youtube').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'youtube-footer'});
+        location.replace("https://www.youtube.com/");
+    });
+    $('#a-reseaux-facebook').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'facebook-footer'});
+        location.replace("https://www.facebook.com/");
+    });
+    $('#a-reseaux-linkedin').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'linkedin-footer'});
+        location.replace("https://www.linkedin.com/");
+    });
+    $('#a-reseaux-twitter').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'twitter-footer'});
+        location.replace("https://twitter.com/");
+    });
+
+    $('#footer-accueil').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'accueil-footer'});
+        page.redirect('/')
+    });
+    $('#footer-services').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'services-footer'});
+        page.redirect('/services')
+    });
+    $('#footer-agence').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'agence-footer'});
+        page.redirect('/agence')
+    });
+    $('#footer-equipe').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'equipe-footer'});
+        page.redirect('/equipe')
+    });
+    $('#footer-contact').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'contact-footer'});
+        page.redirect('/contact')
+    });
+    $('#footer-rejoindre').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'rejoindre-footer'});
+        page.redirect('/nous-rejoindre')
+    });
+
     $('#adriz-footer').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'logo-footer'});
         page.redirect('/');
     });
 
     $('#a-mentions').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'mention'});
         page.redirect('/mention');
+    });
+}
+
+function cookie() {
+
+    let container = $('#div-container-cookie');
+
+    container.css('display', 'flex');
+
+    $('#accepte-cookie').click(() => {
+        localStorage.setItem('cookie', true);
+
+        container.css('display', 'none');
+    });
+    $('#plus-cookie').click(() => {
+
+        let presentation = $('#presentation-cookie');
+        let plus = $('#div-plus-cookie');
+
+        $('#div-cookie').css('overflow-y', 'scroll');
+        plus.css('visibility', 'visible');
+        presentation.css('opacity', 0);
+        plus.css('opacity', 1);
+
+        $('#accepte-plus-cookie').click(() => {
+            localStorage.setItem('cookie', true);
+            firebase.analytics();
+
+            $('#div-plus-cookie').css('display', 'none');
+            container.css('display', 'none');
+        });
+
+        $('#refus-cookie').click(() => {
+            localStorage.setItem('cookie', false);
+
+            $('#div-plus-cookie').css('display', 'none');
+            container.css('display', 'none');
+        });
     });
 }
 
@@ -345,44 +515,57 @@ function header() {
     });
 
     $('#div-nav-accueil').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'accueil-header'});
         page.redirect('/');
     });
     $('#div-nav-services').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'services-header'});
         page.redirect('/services');
     });
     $('#div-nav-agence').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'agence-header'});
         page.redirect('/agence');
     });
     $('#div-nav-equipe').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'equipe-header'});
         page.redirect('/equipe');
     });
     $('#div-nav-contact').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'contact-header'});
         page.redirect('/contact');
     });
     $('#div-nav-rejoindre').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'rejoindre-header'});
         page.redirect('/nous-rejoindre');
     });
 
     $('#nav-accueil').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'accueil-header'});
         page.redirect('/');
     });
     $('#nav-services').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'services-header'});
         page.redirect('/services');
     });
     $('#div-span-agence').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'agence-header'});
         page.redirect('/agence');
     });
     $('#div-span-equipe').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'equipe-header'});
         page.redirect('/equipe');
     });
     $('#nav-contact').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'contact-header'});
         page.redirect('/contact');
     });
     $('#nav-rejoindre').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'rejoindre-header'});
         page.redirect('/nous-rejoindre');
     });
 
     $('#adriz-header').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('click', {button: 'logo-header'});
         page.redirect('/');
     });
 }
@@ -445,7 +628,7 @@ function service() {
         $('#h1-services').css('opacity', 1);
     }, 500);
 
-   scrollHeader();
+    scrollHeader();
 }
 
 /* -------- Agence -------- */
@@ -498,7 +681,6 @@ function agence() {
 /* -------- Équipe -------- */
 
 function equipe() {
-
 
     setTimeout(() => {
         $("#h1-creation").css('opacity', 1);
