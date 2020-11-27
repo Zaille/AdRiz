@@ -159,13 +159,14 @@ h3 {
     justify-content: center;
     position: fixed;
     z-index: 9999;
+    top: 0;
 }
 
 #div-background-cookie {
     height: 100%;
     width: 100%;
     background: #2E1572;
-    opacity: 70%;
+    opacity: 0.7;
     position: fixed;
     z-index: 1;
 }
@@ -181,9 +182,6 @@ h3 {
     display: flex;
 }
 
-#div-cookie::-webkit-scrollbar {
-    width: 10px;
-}
 #div-cookie::-webkit-scrollbar-thumb {
     background: #546BFF;
     border-radius: 10px;
@@ -206,6 +204,7 @@ h3 {
 .div-container-cookie {
     display: grid;
     grid-template-rows: repeat(3, auto);
+    height: 100%;
 }
 
 .p-cookie-title {
@@ -232,9 +231,6 @@ h3 {
     grid-row: 3/4;
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    justify-items: center;
-    align-items: center;
-    width: 100%;
 }
 
 .input-cookie {
@@ -251,6 +247,7 @@ h3 {
     border: #2e1572 solid 3px;
     justify-self: end;
     margin-right: 10%;
+    -webkit-appearance: none;
 }
 
 .input-cookie-1:hover {
@@ -258,7 +255,7 @@ h3 {
     border: #5271FF solid 3px;
 }
 
-.input-cookie-2  {
+.input-cookie-2 {
     color: #2e1572;
     background: transparent;
     border: #2e1572 solid 3px;
@@ -295,6 +292,10 @@ h3 {
 
 @media all and ( min-width: 1301px ) {
 
+    .div-input-cookie {
+        height: 100px;
+    }
+
     #div-cookie {
         border-radius: 30px;
         height: 300px;
@@ -316,10 +317,6 @@ h3 {
         text-align: center;
     }
 
-    #div-input-cookie {
-        margin-top: 2%;
-    }
-
     .input-cookie {
         padding: 3% 0 3% 0;
         font-size: 120%;
@@ -327,13 +324,13 @@ h3 {
         width: 31%;
     }
 
-    #div-input-cookie-plus {
-        margin: 2% 0 3% 0;
-    }
-
 }
 
 @media all and ( min-width: 801px ) and ( max-width: 1300px ) {
+
+    .div-input-cookie {
+        height: 75px;
+    }
 
     #div-cookie {
         border-radius: 25px;
@@ -359,17 +356,13 @@ h3 {
         width: 45%;
     }
 
-    #div-input-cookie {
-        margin-top: 2%;
-    }
-
-    #div-input-cookie-plus {
-        margin: 2% 0 3% 0;
-    }
-
 }
 
 @media all and ( min-width: 501px ) and ( max-width: 800px ) {
+
+    .div-input-cookie {
+        height: 75px;
+    }
 
     #div-cookie {
         border-radius: 25px;
@@ -392,20 +385,16 @@ h3 {
         padding: 4% 0 4% 0;
         font-size: 110%;
         border-radius: 15px;
-        width: 45%;
-    }
-
-    #div-input-cookie {
-        margin-top: 3%;
-    }
-
-    #div-input-cookie-plus {
-        margin: 3% 0 4% 0;
+        width: 60%;
     }
 
 }
 
 @media all and ( max-width: 500px ) {
+
+    .div-input-cookie {
+        height: 75px;
+    }
 
     #div-cookie {
         border-radius: 20px;
@@ -431,14 +420,6 @@ h3 {
         width: 70%;
     }
 
-    #div-input-cookie {
-        margin-top: 5%;
-    }
-
-    #div-input-cookie-plus {
-        margin: 5% 0 6% 0;
-    }
-
 }
 
 /********** MENU **********/
@@ -460,7 +441,7 @@ h3 {
     display: grid;
     grid-template-rows: 10% auto 20%;
     background: #2E1572;
-    opacity: 90%;
+    opacity: 0.9;
     z-index: 4;
 }
 
@@ -489,7 +470,7 @@ h3 {
     display: grid;
     grid-template-rows: repeat(2, 50%);
     background: #5271FF;
-    opacity: 90%;
+    opacity: 0.9;
     height: 0;
 
     transition: all 0.5s ease-in-out;
@@ -746,6 +727,7 @@ h3 {
 .header-button {
     font-weight: bold;
     margin: auto;
+    -webkit-appearance: none;
 }
 
 .smma-presentation {
@@ -1117,7 +1099,7 @@ h3 {
 @media all and ( max-width: 500px) {
 
     #div-header-accueil {
-        grid-template-rows: 45vh repeat(2, 27.5vh) 300px
+        grid-template-rows: 40vh repeat(2, 27.5vh) 300px
     }
 
     #gradient-header-accueil {
@@ -1688,17 +1670,19 @@ h3 {
 }
 
 #input-more-info {
-    background: #FFFFFF;
+    background: transparent;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     letter-spacing: 0.03em;
     font-weight: bold;
     color: #2E1572;
     cursor: pointer;
+    width: 15%;
 }
 
 #div-more-info {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 @media all and ( min-width: 1301px) {
@@ -1760,7 +1744,7 @@ h3 {
         border: 4px solid #2E1572;
         border-radius: 25px;
         font-size: 130%;
-        padding: 1.5% 3% 1.5% 3%;
+        padding: 1.5% 0 1.5% 0;
 
         transition: all 0.3s;
     }
@@ -1834,7 +1818,8 @@ h3 {
         border: 4px solid #2E1572;
         border-radius: 25px;
         font-size: 140%;
-        padding: 2% 5% 2% 5%;
+        padding: 2% 0 2% 0;
+        width: 25%;
     }
 
     #div-more-info {
@@ -1902,7 +1887,8 @@ h3 {
         border: 4px solid #2E1572;
         border-radius: 25px;
         font-size: 150%;
-        padding: 3% 7% 3% 7%;
+        padding: 3% 0 3% 0;
+        width: 35%;
     }
 
     #div-more-info {
@@ -1970,7 +1956,8 @@ h3 {
         border: 3px solid #2E1572;
         border-radius: 15px;
         font-size: 100%;
-        padding: 3% 10% 3% 10%;
+        padding: 3% 0 3% 0;
+        width: 45%;
     }
 
     #div-more-info {
@@ -2020,6 +2007,7 @@ h3 {
     margin: 10% 0 10% 5%;
     border: none;
     cursor: pointer;
+    -webkit-appearance: none;
 }
 
 .show {
@@ -2399,6 +2387,8 @@ h3 {
     background: #5271FF;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     z-index: 2;
+    display: flex;
+    align-items: center;
 }
 
 #p-strategie {
@@ -2456,7 +2446,7 @@ h3 {
     }
 
     #div-texte-strategie {
-        padding: 3.5% 20% 0 20%;
+        padding: 0 20% 0 20%;
     }
 
     #p-strategie {
@@ -2519,12 +2509,13 @@ h3 {
     }
 
     #div-texte-strategie {
-        padding: 5.5% 10% 0 10%;
+        padding: 0 10% 0 10%;
     }
 
     #p-strategie {
         line-height: 35px;
         font-size: 130%;
+        margin-top: 3%;
     }
 
     #img-strategie {
@@ -2586,12 +2577,13 @@ h3 {
     }
 
     #div-texte-strategie {
-        padding: 8.5% 10% 0 10%;
+        padding: 0 10% 0 10%;
     }
 
     #p-strategie {
         line-height: 35px;
         font-size: 130%;
+        margin-top: 5%;
     }
 
     #img-strategie {
@@ -2652,11 +2644,12 @@ h3 {
     }
 
     #div-texte-strategie {
-        padding: 14% 7% 15% 7%;
+        padding: 0 7% 0 7%;
     }
 
     #p-strategie {
         line-height: 25px;
+        margin-top: 5%;
     }
 
     #img-strategie {
@@ -2726,7 +2719,6 @@ h3 {
     font-weight: bold;
     align-self: center;
     justify-self: center;
-    width: auto;
     cursor: pointer;
 }
 
@@ -2746,6 +2738,7 @@ h3 {
         border: #2E1572 solid 4px;
         font-size: 200%;
         padding: 2% 5% 2% 5%;
+        width: 25%;
 
         transition: background 0.3s;
     }
@@ -2773,6 +2766,7 @@ h3 {
         font-size: 150%;
         padding: 3% 7% 3% 7%;
         margin-top: 2%;
+        width: 30%;
     }
 
 }
@@ -2794,6 +2788,7 @@ h3 {
         font-size: 150%;
         padding: 4% 8% 4% 8%;
         margin-top: 2%;
+        width: 35%;
     }
 
 }
@@ -2815,6 +2810,7 @@ h3 {
         font-size: 120%;
         padding: 5% 10% 5% 10%;
         margin-top: 5%;
+        width: 55%;
     }
 
 }
@@ -2887,6 +2883,8 @@ h3 {
     background: #2E1572;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     z-index: 2;
+    display: flex;
+    align-items: center;
 }
 
 .div-campagne {
@@ -2924,7 +2922,7 @@ h3 {
     }
 
     #div-texte-campagne {
-        padding: 3.5% 20% 0 20%;
+        padding: 0 20% 0 20%;
     }
 
     .div-campagne {
@@ -2969,6 +2967,7 @@ h3 {
     #p-campagne {
         line-height: 35px;
         font-size: 130%;
+        margin-top: 3%;
     }
 
     .p-campagne {
@@ -2981,7 +2980,7 @@ h3 {
     }
 
     #div-texte-campagne {
-        padding: 6% 10% 0 10%;
+        padding: 0 10% 0 10%;
     }
 
     .div-campagne {
@@ -3026,6 +3025,7 @@ h3 {
     #p-campagne {
         line-height: 35px;
         font-size: 130%;
+        margin-top: 5%;
     }
 
     .p-campagne {
@@ -3038,7 +3038,7 @@ h3 {
     }
 
     #div-texte-campagne {
-        padding: 9% 10% 0 10%;
+        padding: 0 10% 0 10%;
     }
 
     .div-campagne {
@@ -3082,6 +3082,7 @@ h3 {
 
     #p-campagne {
         line-height: 25px;
+        margin-top: 5%;
     }
 
     .p-campagne {
@@ -3094,7 +3095,7 @@ h3 {
     }
 
     #div-texte-campagne {
-        padding: 15% 7% 15% 7%;
+        padding: 0 7% 0 7%;
     }
 
     .div-campagne {
@@ -3197,7 +3198,7 @@ h3 {
 
     #video-inbound {
         max-width: 90%;
-        max-height: 90%;
+        max-height: 95%;
     }
 
 }
@@ -3354,7 +3355,7 @@ h3 {
 @media all and ( min-width: 801px ) and ( max-width: 1300px ) {
 
     #div-question {
-        margin: 15% 20% 5% 20%;
+        margin: 15% 15% 5% 15%;
     }
 
     #p-question {
@@ -3409,10 +3410,12 @@ h3 {
 #div-blue-meeting {
     position: absolute;
     background: #2E1572;
-    opacity: 40%;
+    opacity: 0.4;
     z-index: 1;
     width: 100%;
     height: 100%;
+
+
 }
 
 .span-titre-agence {
@@ -3859,6 +3862,7 @@ h3 {
     position: relative;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    z-index: 2;
 }
 
 #video-reseaux {
@@ -3874,6 +3878,7 @@ h3 {
     grid-column: 1 / 3;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 #div-texte-travail {
@@ -3884,6 +3889,7 @@ h3 {
     z-index: 3;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 #p-travail {
@@ -4062,7 +4068,7 @@ h3 {
 
     #presentation-service-3 {
         margin-top: 10%;
-        grid-template-columns: 40% auto 50%;
+        grid-template-columns: 40% 10% 50%;
         grid-template-rows: repeat(2, 150px) 200px;
     }
 
@@ -4124,7 +4130,7 @@ h3 {
     }
 
     #video-adriz {
-        width: 100%;
+        width: 110%;
     }
 
     #div-texte-adriz {
@@ -4246,7 +4252,7 @@ h3 {
 
     #presentation-service-3 {
         margin-top: 10%;
-        grid-template-columns: 45% auto 45%;
+        grid-template-columns: 45% 10% 45%;
         grid-template-rows: 125px 150px 200px;
     }
 
@@ -4309,7 +4315,7 @@ h3 {
     }
 
     #video-adriz {
-        width: 100%;
+        width: 110%;
     }
 
     #div-texte-adriz {
@@ -4423,7 +4429,7 @@ h3 {
 
     #presentation-service-3 {
         margin-top: 15%;
-        grid-template-columns: 45% auto 45%;
+        grid-template-columns: 45% 10% 45%;
         grid-template-rows: 100px 50px 225px;
     }
 
@@ -4467,7 +4473,7 @@ h3 {
     }
 
     #video-valeur {
-        right: -10%;
+        right: -15%;
     }
 
     #div-texte-valeur {
@@ -4486,7 +4492,7 @@ h3 {
     }
 
     #video-adriz {
-        width: 100%;
+        width: 110%;
     }
 
     #div-texte-adriz {
@@ -4600,7 +4606,7 @@ h3 {
 
     #presentation-service-3 {
         margin-top: 15%;
-        grid-template-columns: 30% auto 40%;
+        grid-template-columns: repeat(2, 30%) 40%;
         grid-template-rows: 100px 50px 150px;
     }
 
@@ -4639,7 +4645,7 @@ h3 {
     }
 
     #video-valeur {
-        right: -15%;
+        right: -10%;
     }
 
     #div-texte-valeur {
@@ -4658,7 +4664,7 @@ h3 {
     }
 
     #video-adriz {
-        height: 100%;
+        height: 110%;
     }
 
     #div-texte-adriz {
@@ -4962,7 +4968,7 @@ h3 {
     }
 
     #div-etudes {
-        height: 230px;
+        height: 250px;
     }
 
     #p-etudes {
@@ -5044,7 +5050,7 @@ h3 {
     }
 
     #div-etudes {
-        height: 200px;
+        height: 250px;
     }
 
     #p-etudes {
@@ -5482,7 +5488,7 @@ h3 {
     }
 
     #presentation-lucas {
-        padding: 5% 33% 5% 33%;
+        padding: 5% 30% 5% 30%;
     }
 
     #h3-lucas {
@@ -5515,7 +5521,7 @@ h3 {
     }
 
     #presentation-julien {
-        padding: 5% 32% 5% 32%;
+        padding: 5% 30% 5% 30%;
     }
 
     #h3-julien {
@@ -5560,7 +5566,7 @@ h3 {
     }
 
     #img-presentation {
-        width: 110%;
+        width: 120%;
         top: -20%;
     }
 
@@ -5664,7 +5670,7 @@ h3 {
     }
 
     #img-presentation {
-        height: 110%;
+        height: 120%;
         top: -10%;
     }
 
@@ -5863,6 +5869,7 @@ h3 {
     cursor: pointer;
     text-align: center;
     align-self: center;
+    -webkit-appearance: none;
 }
 
 @media all and ( min-width: 1301px ) {
@@ -6056,6 +6063,7 @@ h3 {
     padding: 3%;
     border: none;
     cursor: pointer;
+    -webkit-appearance: none;
 }
 
 #label-contact-a-venir {
@@ -6150,7 +6158,7 @@ h3 {
         border: #2E1572 solid 4px;
         font-size: 190%;
         padding: 3% 7% 3% 7%;
-        width: 20%;
+        width: 30%;
 
         transition: background 0.3s;
     }
@@ -6215,7 +6223,7 @@ h3 {
         border: #2E1572 solid 4px;
         font-size: 190%;
         padding: 4% 10% 4% 10%;
-        width: 20%;
+        width: 40%;
     }
 
     #validation-newsletter-a-venir {
@@ -6274,7 +6282,7 @@ h3 {
         border: #2E1572 solid 4px;
         font-size: 170%;
         padding: 4% 10% 4% 10%;
-        width: 20%;
+        width: 40%;
     }
 
     #validation-newsletter-a-venir {
@@ -6333,7 +6341,7 @@ h3 {
         border: #2E1572 solid 3px;
         font-size: 120%;
         padding: 5% 10% 5% 10%;
-        width: 30%;
+        width: 50%;
     }
 
     #validation-newsletter-a-venir {
@@ -6368,6 +6376,7 @@ h3 {
 
 .p-mention {
     line-height: 150%;
+    text-align: justify;
 }
 
 .li-mention {
@@ -6547,6 +6556,11 @@ h3 {
     position: absolute;
 }
 
+.img-reseaux-instagram {
+    width: 70%;
+    position: absolute;
+}
+
 #div-nav-site {
     display: grid;
     grid-template-rows: repeat(3, auto);
@@ -6633,7 +6647,7 @@ h3 {
 
 #nav-reseaux-sociaux {
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(5, 20%);
 }
 
 .a-reseaux {
@@ -6698,6 +6712,7 @@ h3 {
     letter-spacing: 0.03em;
     color: #FFFFFF;
     position: relative;
+    width: 100%;
 }
 
 #a-mentions {
@@ -6707,7 +6722,9 @@ h3 {
     color: #FFFFFF;
     text-decoration: none;
     cursor: pointer;
-    justify-self: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
     transition: color 0.3s;
 }
@@ -6807,6 +6824,7 @@ h3 {
 
     #adriz-footer {
         width: 15%;
+        height: 10%;
         margin: 2% 0 2% 0;
     }
 

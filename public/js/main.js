@@ -212,12 +212,12 @@ page('/equipe', async () => {
 
     $('#a-linkedin-lucas').click(() => {
         if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'linkedin-lucas'});
-        location.replace('https://www.linkedin.com/in/hervouet-lucas/');
+        window.open('https://www.linkedin.com/in/hervouet-lucas/', '_blank');
     });
 
     $('#a-linkedin-julien').click(() => {
         if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'linkedin-julien'});
-        location.replace('https://www.linkedin.com/in/julien-waisse-4318b41b4/');
+        window.open('https://www.linkedin.com/in/julien-waisse-4318b41b4/', '_blank');
     });
 
     $('#button-contact').click(() => {
@@ -381,19 +381,23 @@ page();
 function footer() {
     $('#a-reseaux-youtube').click(() => {
         if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'youtube-footer'});
-        location.replace("https://www.youtube.com/");
+        window.open('https://www.youtube.com/channel/UC_BsXzTT-hvr1f8jr_1m7zA/featured', '_blank');
     });
     $('#a-reseaux-facebook').click(() => {
         if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'facebook-footer'});
-        location.replace("https://www.facebook.com/");
+        window.open('https://www.facebook.com/AdRiz-101479968453969', '_blank');
     });
     $('#a-reseaux-linkedin').click(() => {
         if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'linkedin-footer'});
-        location.replace("https://www.linkedin.com/");
+        window.open('https://www.linkedin.com/company/69561433/admin/', '_blank');
     });
     $('#a-reseaux-twitter').click(() => {
         if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'twitter-footer'});
-        location.replace("https://twitter.com/");
+        window.open('https://twitter.com/AdRiz67226877', '_blank');
+    });
+    $('#a-reseaux-instagram').click(() => {
+        if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'instagram-footer'});
+        window.open('https://www.instagram.com/adriz.agency', '_blank');
     });
 
     $('#footer-accueil').click(() => {
