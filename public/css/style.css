@@ -5175,6 +5175,7 @@ h3 {
     justify-self: center;
     align-self: end;
     position: relative;
+    cursor: pointer;
 }
 
 #div-img-lucas {
