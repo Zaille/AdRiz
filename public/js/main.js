@@ -393,7 +393,7 @@ function footer() {
     });
     $('#a-reseaux-twitter').click(() => {
         if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'twitter-footer'});
-        window.open('https://twitter.com/AdRiz67226877', '_blank');
+        window.open('https://twitter.com/AdRiz_Agency', '_blank');
     });
     $('#a-reseaux-instagram').click(() => {
         if (localStorage.getItem('cookie') === 'true') firebase.analytics().logEvent('network', {button: 'instagram-footer'});
@@ -438,38 +438,43 @@ function footer() {
 
 function cookie() {
 
-    let container = $('#div-container-cookie');
+    let container = $('#div-container-cookie-plus');
+    let presentation = $('#presentation-cookie');
+    let background = $('#div-background-cookie');
+    let plus = $('#div-plus-cookie');
 
-    container.css('display', 'flex');
+    presentation.css('bottom', '0');
 
     $('#accepte-cookie').click(() => {
         localStorage.setItem('cookie', true);
 
-        container.css('display', 'none');
+        presentation.css('bottom', '-100%');
     });
     $('#plus-cookie').click(() => {
 
-        let presentation = $('#presentation-cookie');
-        let plus = $('#div-plus-cookie');
-
         $('#div-cookie').css('overflow-y', 'scroll');
-        plus.css('visibility', 'visible');
-        presentation.css('opacity', 0);
+
+        presentation.css('bottom', '-100%');
+        container.css('visibility', 'visible');
+        container.css('z-index', 9999);
+        background.css('opacity', 0.7);
         plus.css('opacity', 1);
 
         $('#accepte-plus-cookie').click(() => {
             localStorage.setItem('cookie', true);
             firebase.analytics();
 
-            $('#div-plus-cookie').css('display', 'none');
-            container.css('display', 'none');
+            $('#div-plus-cookie').css('visibility', 'hidden');
+            container.css('z-index', -10);
+            container.css('visibility', 'hidden');
         });
 
         $('#refus-cookie').click(() => {
             localStorage.setItem('cookie', false);
 
-            $('#div-plus-cookie').css('display', 'none');
-            container.css('display', 'none');
+            $('#div-plus-cookie').css('visibility', 'hidden');
+            container.css('z-index', -10);
+            container.css('visibility', 'hidden');
         });
     });
 }
