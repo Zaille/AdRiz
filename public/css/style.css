@@ -621,20 +621,20 @@ h3 {
 
 #div-menu {
     height: 100%;
-    width: 0;
+    width: 100%;
     position: fixed;
     display: grid;
-    grid-template-columns: 70% 30%;
     z-index: 3;
     top: 0;
-    left: 0;
+    left: -100%;
     overflow-x: hidden;
-    transition: 0.5s;
+
+    transition: all 1s;
 }
 
 #div-nav-menu {
     display: grid;
-    grid-template-rows: 10% auto 20%;
+    grid-template-rows: 10% repeat(2, auto);
     background: #2E1572;
     opacity: 0.9;
     z-index: 4;
@@ -686,8 +686,7 @@ h3 {
     font-weight: bold;
     color: #FFFFFF;
     align-self: center;
-    margin: 5%;
-    opacity: 0;
+    margin-left: 5%;
 
     transition: opacity 0.5s;
 }
@@ -728,31 +727,31 @@ h3 {
 @media all and ( min-width: 801px ) and ( max-width: 1300px ) {
 
     .img-menu {
-        width: 30px;
+        width: 20px;
     }
 
     #img-services {
-        width: 10px;
+        width: 7px;
     }
 
     .span-menu {
-        font-size: 30px;
+        font-size: 17px;
     }
 
     #nav-menu {
-        grid-template-rows: repeat(3, 20%) 0 repeat(2, 20%);
+        grid-template-rows: repeat(3, 70px) 0 repeat(2, 70px);
     }
 
     #button-close-menu {
-        width: 25px;
+        width: 15px;
     }
 
     .span-sous-menu {
-        font-size: 22px;
+        font-size: 17px;
     }
 
     .img-sous-menu {
-        width: 30px;
+        width: 20px;
     }
 
 }
@@ -1151,6 +1150,10 @@ h3 {
         transition: all 0.5s ease-in-out;
     }
 
+    #div-menu {
+        grid-template-columns: 35% 65%;
+    }
+
     .nav-header {
         display: none;
     }
@@ -1236,6 +1239,10 @@ h3 {
         cursor: pointer;
 
         transition: all 0.5s ease-in-out;
+    }
+
+    #div-menu {
+        grid-template-columns: 45% 55%;
     }
 
     .nav-header {

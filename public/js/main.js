@@ -485,19 +485,15 @@ function cookie() {
 
 function header() {
     $('#menu').click(() => {
-        $('#div-menu').css('width', '100%').after(() => {
-            $('.span-menu').css('opacity', 1);
-        });
+        $('#div-menu').css('left', '0');
     });
 
     $('#div-close-menu').click(() => {
-        $('.span-menu').css('opacity', 0);
-        $('#div-menu').css('width', 0);
+        $('#div-menu').css('left', '-100%');
     });
 
     $('#button-close-menu').click(() => {
-        $('.span-menu').css('opacity', 0);
-        $('#div-menu').css('width', 0);
+        $('#div-menu').css('left', '-100%');
     });
 
     $('#div-nav-adriz').click(() => {
